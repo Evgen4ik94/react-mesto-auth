@@ -2,7 +2,6 @@
     flex: 1 1 auto;
     max-width: calc(880px - 120px - 150px);
     padding-right: 25px;
-    max-width: unset;
     min-width: 0;
 }
 @media screen and (max-width: 600px) {
