@@ -1,0 +1,12 @@
+.gallery {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 51px 0 0;
+    transition: .5s ease-in-out;
+}
+@media screen and (max-width: 900px) {
+    .gallery {
+        padding: 51px 19px 0 19px;
+    }
+    
+}

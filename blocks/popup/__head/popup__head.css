@@ -1,0 +1,17 @@
+.popup__head {
+    flex: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+@media screen and (max-width: 500px) {
+    .popup__head {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}

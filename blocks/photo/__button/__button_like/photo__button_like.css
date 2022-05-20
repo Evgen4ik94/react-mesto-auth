@@ -1,0 +1,15 @@
+.photo__button_like {
+    background-image: url('../../../../images/like.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    transition: all .5s ease;
+
+}
+.photo__button_like:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.photo__button_like:active {
+    background-image: url('../../../../images/like_active.svg');
+}

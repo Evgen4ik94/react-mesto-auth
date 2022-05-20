@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body>
+    <div class="page">
+<!-- ШАПКА -->
+        <header class="header">
+            <img class="header__logo" src="./images/header-logo.svg" alt="Место">
+        </header>
+    <main class="content">
+<!-- ПРОФИЛЬ -->
+    <section class="profile">
+        <div class="profile__avatar">
+            <img class="profile__image" src="./images/avatar.jpg" alt="Фото профиля">
+        </div>
+        <div class="profile__info">
+            <div class="profile__name-box">
+                <h1 class="text profile__name">Евгений Миляков</h1>
+                <button class="profile__button profile__button_edit" title="Редактировать"></button>
+            </div>
+            <p class="text profile__prof">Инженер-конструктор</p>
+        </div>
+        <button class="profile__button profile__button_add" title="Добавить"></button>
+    </section>
+    <section class="gallery">
+        <ul class="gallery__list">
+            <li class="photo">
+                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Карачаевск</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+            <li class="photo">
+                <img class="photo__item" src="./images/elbrus.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Гора Эльбрус</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+            <li class="photo">
+                <img class="photo__item" src="./images/dombai.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Домбай</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+            <li class="photo">
+                <img class="photo__item" src="./images/elbrus.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Гора Эльбрус</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+            <li class="photo">
+                <img class="photo__item" src="./images/dombai.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Домбай</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+            <li class="photo">
+                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Фото">
+                <div class="photo__description">
+                    <h3 class="photo__title">Карачаево-Черкесия</h3>
+                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                </div>
+            </li>
+        </ul>
+    </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__author">&copy; 2022 Евгений Миляков</p>
+    </footer>
+    <div class="popup popup_edit_profile">
+        <div class="popup__container">
+            <button class="popup__button popup__button_close"></button>
+            <form class="popup__form" name="profile-edit">
+                <h3 class="popup__head">Редактировать профиль</h3>
+                <label class="popup__block">
+                    <input type="text" class="popup__item popup__item_name" id="name" name="name" placeholder="Имя">
+                </label>
+                <label class="popup__block">
+                    <input type="text" class="popup__item popup__item_about" id="about" name="about" placeholder="О себе">
+                </label>
+                <button class="popup__button popup__button_submit" type="submit" value="Сохранить">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
