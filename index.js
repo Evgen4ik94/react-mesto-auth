@@ -3,6 +3,7 @@ let editButton = document.querySelector('.profile__button_edit'); //Кладем
 let popup = document.querySelector('.popup'); //Кладем в переменную элемент с классом "popup" - блок с формой
 let closeButton = document.querySelector('.popup__button_close'); //Кладем в переменную элемент с классом "popup__button_close" - блок с крестиком "закрыть"
 
+
 function popupOpen() {
     popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
 }
@@ -25,17 +26,19 @@ let jobForm = document.querySelector('#about');
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
-
-    nameInput.textContent = nameForm.value;// Получите значение полей jobInput и nameInput из свойства value
-
+    nameInput.textContent = nameForm.value;// Получите значение полей jobInput и nameInput из свойства valueZ
     jobInput.textContent = jobForm.value;// Выберите элементы, куда должны быть вставлены значения полей
 
     // Вставьте новые значения с помощью textContent
     popupClose();
 }
+//Состояние кнопки лайка
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
+
 formElement.addEventListener('submit', formSubmitHandler); 
+
+
+
+

@@ -26,6 +26,7 @@
 @import url('../blocks/photo/__title/photo__title.css');/*Стили подписи фото*/
 @import url('../blocks/photo/__button/photo__button.css');/*Стили кнопки*/
 @import url('../blocks/photo/__button/__button_like/photo__button_like.css');/*Стили кнопки лайка*/
+@import url('../blocks/photo/__button/__button_like_active/photo__button_like_active.css');
 /*ПОДВАЛ*/
 @import url('../blocks/footer/footer.css');/*Стили подвала*/
 @import url('../blocks/footer/__author/footer__author.css');/*Стили подвала*/
