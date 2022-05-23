@@ -8,5 +8,9 @@
     .gallery {
         padding: 51px 19px 0 19px;
     }
-    
+}
+@media screen and (max-width: 400px) {
+    .gallery {
+        padding: 36px 19px 0 19px;
+    }
 }

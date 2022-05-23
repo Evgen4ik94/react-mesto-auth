@@ -1,7 +1,17 @@
 .photo__button {
+    background-image: url('../../../../images/like.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    transition: all .5s ease;
     width: 22px;
     height: 19px;
     margin: 5px 5px -1px;
     border: 0;
     background-color: #fff;
+}
+
+.photo__button:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }

@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
-<body>
-    <div class="page">
+<body class="page">
 <!-- ШАПКА -->
         <header class="header">
             <img class="header__logo" src="./images/header-logo.svg" alt="Место">
@@ -22,55 +21,55 @@
         <div class="profile__info">
             <div class="profile__name-box">
                 <h1 class="text profile__name">Евгений Миляков</h1>
-                <button class="profile__button profile__button_edit" title="Редактировать"></button>
+                <button class="profile__button profile__button_edit" title="Редактировать" type="button"></button>
             </div>
             <p class="text profile__prof">Инженер-конструктор</p>
         </div>
-        <button class="profile__button profile__button_add" title="Добавить"></button>
+        <button class="profile__button profile__button_add" title="Добавить" type="button"></button>
     </section>
 <!-- ГАЛЕРЕЯ -->
     <section class="gallery">
         <ul class="gallery__list">
             <li class="photo">
-                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Фото">
+                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
                 <div class="photo__description">
-                    <h3 class="photo__title">Карачаевск</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Карачаевск</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
-                <img class="photo__item" src="./images/elbrus.jpg" alt="Фото">
+                <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="photo__description">
-                    <h3 class="photo__title">Гора Эльбрус</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Гора Эльбрус</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
-                <img class="photo__item" src="./images/dombai.jpg" alt="Фото">
+                <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
                 <div class="photo__description">
-                    <h3 class="photo__title">Домбай</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Домбай</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
-                <img class="photo__item" src="./images/elbrus.jpg" alt="Фото">
+                <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="photo__description">
-                    <h3 class="photo__title">Гора Эльбрус</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Гора Эльбрус</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
-                <img class="photo__item" src="./images/dombai.jpg" alt="Фото">
+                <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
                 <div class="photo__description">
-                    <h3 class="photo__title">Домбай</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Домбай</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
-                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Фото">
+                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия">
                 <div class="photo__description">
-                    <h3 class="photo__title">Карачаево-Черкесия</h3>
-                    <button class="photo__button photo__button_like" title="Поставить лайк"></button>
+                    <h2 class="photo__title">Карачаево-Черкесия</h2>
+                    <button class="photo__button" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
         </ul>
@@ -83,9 +82,9 @@
 <!-- POP-UP -->
     <div class="popup popup_edit_profile">
         <div class="popup__container">
-            <button class="popup__button popup__button_close"></button>
+            <button class="popup__button popup__button_close" type="button"></button>
+            <h3 class="popup__head">Редактировать профиль</h3>
             <form class="popup__form" name="profile-edit">
-                <h3 class="popup__head">Редактировать профиль</h3>
                 <label class="popup__block">
                     <input type="text" class="popup__item popup__item_name" id="name" name="name" placeholder="Имя">
                 </label>
@@ -95,7 +94,6 @@
                 <button class="popup__button popup__button_submit" type="submit" value="Сохранить">Сохранить</button>
             </form>
         </div>
-    </div>
     </div>
 <!-- СКРИПТ -->
     <script src="./index.js"></script>
