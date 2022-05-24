@@ -15,8 +15,8 @@
 @import url('../blocks/profile/__name/profile__name.css');/*Стили общей информации профиля*/
 @import url('../blocks/profile/__prof/profile__prof.css');/*Стили общей информации профиля*/
 @import url('../blocks/profile/__button/profile__button.css');/*Стили кнопок профиля*/
-@import url('../blocks/profile/__button/profile__button-edit.css');/*Стили кнопки "редактировать"*/
-@import url('../blocks/profile/__button/profile__button-add.css');/*Стили кнопки "добавить"*/
+@import url('../blocks/profile/__button-edit/profile__button-edit.css');/*Стили кнопки "редактировать"*/
+@import url('../blocks/profile/__button-add/profile__button-add.css');/*Стили кнопки "добавить"*/
 /*ГАЛЕРЕЯ*/
 @import url('../blocks/gallery/gallery.css');/*Стили галереи*/
 @import url('../blocks/gallery/__list/gallery__list.css');/*Стили галереи*/
@@ -24,7 +24,7 @@
 @import url('../blocks/photo/__item/photo__item.css');/*Стили фото галереи*/
 @import url('../blocks/photo/__description/photo__description.css');/*Стили блока подписи фото*/
 @import url('../blocks/photo/__title/photo__title.css');/*Стили подписи фото*/
-@import url('../blocks/photo/photo__button-like/photo__button-like.css');/*Стили кнопки лайка*/
+@import url('../blocks/photo/__button-like/photo__button-like.css');/*Стили кнопки лайка*/
 /*ПОДВАЛ*/
 @import url('../blocks/footer/footer.css');/*Стили подвала*/
 @import url('../blocks/footer/__author/footer__author.css');/*Стили подвала*/
