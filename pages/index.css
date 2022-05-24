@@ -24,8 +24,7 @@
 @import url('../blocks/photo/__item/photo__item.css');/*Стили фото галереи*/
 @import url('../blocks/photo/__description/photo__description.css');/*Стили блока подписи фото*/
 @import url('../blocks/photo/__title/photo__title.css');/*Стили подписи фото*/
-@import url('../blocks/photo/__button/photo__button.css');/*Стили кнопки*/
-@import url('../blocks/photo/__button/photo__button-like.css');/*Стили кнопки лайка*/
+@import url('../blocks/photo/photo__button-like/photo__button-like.css');/*Стили кнопки лайка*/
 /*ПОДВАЛ*/
 @import url('../blocks/footer/footer.css');/*Стили подвала*/
 @import url('../blocks/footer/__author/footer__author.css');/*Стили подвала*/
@@ -33,15 +32,12 @@
 /*POP-UP*/
 @import url('../blocks/popup/popup.css');/*Стили поп-апа*/
 @import url('../blocks/popup/__container/popup__container.css');/*Стили поп-апа*/
-@import url('../blocks/popup/__button/popup__button.css');/*Стили кнопок поп-апа*/
-@import url('../blocks/popup/__button/popup__button-close.css');/*Стили кнопки "закрыть"*/
+@import url('../blocks/popup/__button-close/popup__button-close.css');/*Стили кнопки "закрыть"*/
 @import url('../blocks/popup/__form/popup__form.css');/*Стили формы поп-апа*/
 @import url('../blocks/popup/__head/popup__head.css');/*Стили заголовка формы*/
 @import url('../blocks/popup/__block/popup__block.css');/*Стили поля формы*/
 @import url('../blocks/popup/__item/popup__item.css');/*Стили заполнения формы*/
-@import url('../blocks/popup/__item/__item_name/popup__item_name.css');/*Стили поля "имя"*/
-@import url('../blocks/popup/__item/__item_about/popup__item_about.css');/*Стили поля "о себе"*/
-@import url('../blocks/popup/__button/popup__button-submit.css');/*Стили кнопки "сохранить"*/
+@import url('../blocks/popup/__button-submit/popup__button-submit.css');/*Стили кнопки "сохранить"*/
 @import url('../blocks/popup/_opened/popup_opened.css');/*Стили открытия поп-апа*/
 
 

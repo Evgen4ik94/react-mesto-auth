@@ -3,7 +3,7 @@ let editButton = document.querySelector('.profile__button-edit'); //Кладем
 let popup = document.querySelector('.popup'); //Кладем в переменную элемент с классом "popup" - блок с формой
 let closeButton = document.querySelector('.popup__button-close'); //Кладем в переменную элемент с классом "popup__button_close" - блок с крестиком "закрыть"
 // Находим форму в DOM
-let formProfile =  document.querySelector('.popup_edit_profile');// Воспользуйтесь методом querySelector()
+let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()

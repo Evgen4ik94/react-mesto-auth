@@ -1,4 +1,7 @@
 .popup__button-submit {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
     background-color: #000;
     border-radius: 2px;
     border: 0;
