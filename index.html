@@ -21,11 +21,11 @@
         <div class="profile__info">
             <div class="profile__name-box">
                 <h1 class="text profile__name">Евгений Миляков</h1>
-                <button class="profile__button profile__button_edit" title="Редактировать" type="button"></button>
+                <button class="profile__button profile__button-edit" title="Редактировать" type="button"></button>
             </div>
             <p class="text profile__prof">Инженер-конструктор</p>
         </div>
-        <button class="profile__button profile__button_add" title="Добавить" type="button"></button>
+        <button class="profile__button profile__button-add" title="Добавить" type="button"></button>
     </section>
 <!-- ГАЛЕРЕЯ -->
     <section class="gallery">
@@ -34,42 +34,42 @@
                 <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
                 <div class="photo__description">
                     <h2 class="photo__title">Карачаевск</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
                 <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="photo__description">
                     <h2 class="photo__title">Гора Эльбрус</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
                 <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
                 <div class="photo__description">
                     <h2 class="photo__title">Домбай</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
                 <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
                 <div class="photo__description">
                     <h2 class="photo__title">Гора Эльбрус</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
                 <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
                 <div class="photo__description">
                     <h2 class="photo__title">Домбай</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
             <li class="photo">
                 <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия">
                 <div class="photo__description">
                     <h2 class="photo__title">Карачаево-Черкесия</h2>
-                    <button class="photo__button" title="Поставить лайк" type="button"></button>
+                    <button class="photo__button photo__button-like" title="Поставить лайк" type="button"></button>
                 </div>
             </li>
         </ul>
@@ -82,20 +82,20 @@
 <!-- POP-UP -->
     <div class="popup popup_edit_profile">
         <div class="popup__container">
-            <button class="popup__button popup__button_close" type="button"></button>
+            <button class="popup__button popup__button-close" type="button"></button>
             <h3 class="popup__head">Редактировать профиль</h3>
             <form class="popup__form" name="profile-edit">
                 <label class="popup__block">
-                    <input type="text" class="popup__item popup__item_name" id="name" name="name" placeholder="Имя">
+                    <input type="text" class="popup__item popup__item_type_name" id="name" name="name" placeholder="Имя">
                 </label>
                 <label class="popup__block">
-                    <input type="text" class="popup__item popup__item_about" id="about" name="about" placeholder="О себе">
+                    <input type="text" class="popup__item popup__item_type_about" id="about" name="about" placeholder="О себе">
                 </label>
-                <button class="popup__button popup__button_submit" type="submit" value="Сохранить">Сохранить</button>
+                <button class="popup__button popup__button-submit" type="submit" value="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
 <!-- СКРИПТ -->
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-.profile__button_add {
-    background-image: url('../../../../images/add_button.svg');
+.profile__button-add {
+    background-image: url('../../../images/add_button.svg');
     background-position: 50%;
     background-repeat: no-repeat;
     border: 2px solid #ffffff;
@@ -9,11 +9,11 @@
     flex: none;
     transition: all .5s ease;
 }
-.profile__button_add:hover {
+.profile__button-add:hover {
     opacity: 0.6;
 }
 @media screen and (max-width: 600px) {
-    .profile__button_add {
+    .profile__button-add {
         width: 100%;
         background-size: 16px 16px;
     }

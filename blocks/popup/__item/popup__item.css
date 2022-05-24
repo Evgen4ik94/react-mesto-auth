@@ -6,6 +6,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    overflow: hidden;
 }
 .popup__item:focus {
     outline: none;
