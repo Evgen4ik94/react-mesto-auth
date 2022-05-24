@@ -12,20 +12,13 @@ let profileProf = document.querySelector('.profile__prof');
 
 function popupOpen() {
     popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
-    nameInput.textContent = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
-    jobInput.textContent = profileProf.textContent;
+    nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
+    jobInput.value = profileProf.textContent;
 }
 function popupClose() {
     popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
 }
 
-
-editButton.addEventListener('click', popupOpen); //Открытие формы по клику на кнопку
-closeButton.addEventListener('click', popupClose); //Закрытие формы по клику на крестик
-
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства valueZ
@@ -40,7 +33,10 @@ function formSubmitHandler (evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-
+editButton.addEventListener('click', popupOpen); //Открытие формы по клику на кнопку
+closeButton.addEventListener('click', popupClose); //Закрытие формы по клику на крестик
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
 formProfile.addEventListener('submit', formSubmitHandler); 
 
 
