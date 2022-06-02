@@ -79,7 +79,7 @@
     <footer class="footer">
         <p class="footer__author">&copy; 2022 Евгений Миляков</p>
     </footer>
-<!-- POP-UP -->
+<!-- POP-UPS -->
     <div class="popup popup_edit_profile">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
@@ -92,6 +92,21 @@
                     <input type="text" class="popup__item popup__item_type_about" id="about" name="about" placeholder="О себе">
                 </label>
                 <button class="popup__button-submit" type="submit" value="Сохранить">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_add_photo popup_opened">
+        <div class="popup__container">
+            <button class="popup__button-close" type="button"></button>
+            <h3 class="popup__head">Новое место</h3>
+            <form class="popup__form" action="#" method="POST" name="placeInfo" novalidate>
+                <label class="popup__block">
+                    <input type="text" name="name" placeholder="Название" class="popup__item" required minlength="1" maxlength="30" id="name-input">
+                </label>
+                <label class="popup__block">
+                    <input type="url" name="link" placeholder="Ссылка на картинку" class="popup__item popup__item_type_link" required id="url-input">
+                </label>
+                <button type="submit" value="Создать" class="popup__button-submit">Создать</button>
             </form>
         </div>
     </div>
