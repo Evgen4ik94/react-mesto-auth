@@ -1,6 +1,9 @@
 // Используем .querySelector()
-let editButton = document.querySelector('.profile__button-edit'); //Кладем в переменную элемент с классом "profile__button_edit"
+let editButton = document.querySelector('.profile__button-edit'); //Кладем в переменную кнопку Редактировать"
+let addButton = document.querySelector('.profile__button-add') //Кладем в переменную кнопку Добавить"
 let popup = document.querySelector('.popup'); //Кладем в переменную элемент с классом "popup" - блок с формой
+let popupAdd = document.querySelector('.popup_add_photo'); //Кладем в переменную элемент с классом "popup_add_photo" - блок с формой
+
 let closeButton = document.querySelector('.popup__button-close'); //Кладем в переменную элемент с классом "popup__button_close" - блок с крестиком "закрыть"
 // Находим форму в DOM
 let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
@@ -19,6 +22,17 @@ function popupClose() {
     popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
 }
 
+
+function popupAddOpen() {
+    popupAdd.classList.add('popup_opened'); //Функция добавляет класс popup_opened
+    nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
+    jobInput.value = profileProf.textContent;
+}
+function popupAddClose() {
+    popupAdd.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
+}
+
+
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства valueZ
@@ -34,6 +48,7 @@ function formSubmitHandler (evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editButton.addEventListener('click', popupOpen); //Открытие формы по клику на кнопку
+addButton.addEventListener('click', popupAddOpen); //Открытие формы по клику на кнопку
 closeButton.addEventListener('click', popupClose); //Закрытие формы по клику на крестик
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
