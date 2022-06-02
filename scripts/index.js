@@ -43,16 +43,6 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     popupClose();
 };
-
-// Удаление фото
-gallery.addEventListener('click', function (evt) {
-    evt.target.closest('.photo').remove();;
-    console.log(evt);
-});
-
-
-//Состояние кнопки лайка
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editButton.addEventListener('click', popupOpen); //Открытие формы по клику на кнопку
@@ -62,6 +52,26 @@ closeButton.addEventListener('click', popupClose); //Закрытие формы
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 formProfile.addEventListener('submit', formSubmitHandler); 
+
+//Добавление фото
+function addPlace(nameValue, linkValue) {
+    const galleryTemplate = document.querySelector('#gallery-template').content;
+    const photoItem = galleryTemplate.querySelector('.')
+}
+
+
+
+
+// Удаление фото
+gallery.addEventListener('click', (evt) => {
+    evt.target.closest('.photo').remove();
+});
+
+//Состояние кнопки лайка
+
+
+
+
 
 
 
