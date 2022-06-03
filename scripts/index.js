@@ -3,23 +3,27 @@
 let editButton = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
 let addButton = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 let closeButtons = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
-let createButton = document.querySelector('.popup__button-create'); //Кнопка [+] добавить
+let createButton = document.querySelector('.create_button'); //Кнопка [+] добавить
 let deleteButton = document.querySelectorAll('.photo__button-delete'); //Кнопка "Удалить" фото
+let likeButtons = document.querySelectorAll('.photo__button-like');
+console.log(likeButtons);
 
 //---POPUPS---//
 let popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 let popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
-
 let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею"
 
 // Находим форму в DOM
 let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
+
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
 let profileName = document.querySelector('.profile__name');
 let profileProf = document.querySelector('.profile__prof');
-
+//--- ГАЛЕРЕЯ ---//
+const addName = document.querySelector('.popup__item_type_caption');
+const addLink = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 
 function popupOpenEdit() {
@@ -49,47 +53,43 @@ closeButtons.forEach(button => {
 //------------ END ---------------------//
 
 // Удаление фото
-gallery.addEventListener('click', (evt) => {
+/*gallery.addEventListener('click', (evt) => {
   evt.target.closest('.photo').remove();
-});
+});*/
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства valueZ
     profileProf.textContent = jobInput.value;
-    
     // Выберите элементы, куда должны быть вставлены значения полей
-
     // Вставьте новые значения с помощью textContent
     closePopup(popupEdit);
 };
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-editButton.addEventListener('click', popupOpenEdit); //Открытие формы по клику на кнопку
-addButton.addEventListener('click', popupOpenAdd); //Открытие формы по клику на кнопку
+// Прикрепляем обработчики к формам:
+editButton.addEventListener('click', popupOpenEdit); //Открытие формы редактирования профиля по клику на кнопку
+addButton.addEventListener('click', popupOpenAdd); //Открытие формы добавления карточки по клику на кнопку
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 formProfile.addEventListener('submit', formSubmitHandler); 
+//Обработчик добавления карточки
 createButton.addEventListener('click', createCardForm);
-
-//Добавление фото
-/*function addPlace(nameValue, linkValue) {
-    const galleryTemplate = document.querySelector('#gallery-template').content;
-    const photoItem = galleryTemplate.querySelector('.')
-}*/
-
-
-
 
 
 
 //Состояние кнопки лайка
+function likeInit(evt) {
+  evt.target.classList.toggle('photo__button-like_active');
+};
 
+/*function setLike(evt) {
+  likeInit(.closest('.photo'));
+};*/
 
-//--- ГАЛЕРЕЯ ---//
-const addName = document.querySelector('.popup__item_type_caption');
-const addLink = document.querySelector('.popup__item_type_link');
+likeButtons.forEach(like => {
+  like.addEventListener('click', likeInit)
+});
+
 
 
 const initialCards = [
@@ -143,4 +143,6 @@ function createCardForm(evt) {
   galleryItem.querySelector('.photo__item').src = addLink.value; //Из массива в атрибут src кладем ссылку
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
   closePopup(popupAdd);
+  addName.value = "";
+  addLink.value = "";
 };
