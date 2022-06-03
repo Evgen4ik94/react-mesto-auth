@@ -4,7 +4,7 @@ let addButton = document.querySelector('.profile__button-add') //Кладем в
 let popup = document.querySelector('.popup'); //Кладем в переменную элемент с классом "popup" - блок с формой
 let popupAdd = document.querySelector('.popup_add_photo'); //Кладем в переменную элемент с классом "popup_add_photo" - блок с формой
 let closeButton = document.querySelector('.popup__button-close'); //Кладем в переменную элемент с классом "popup__button_close" - блок с крестиком "закрыть"
-let gallery = document.querySelector('.gallery')//Кладем в переменную кнопку Удалить"
+let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею"
 // Находим форму в DOM
 let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
@@ -54,10 +54,10 @@ closeButton.addEventListener('click', popupClose); //Закрытие формы
 formProfile.addEventListener('submit', formSubmitHandler); 
 
 //Добавление фото
-function addPlace(nameValue, linkValue) {
+/*function addPlace(nameValue, linkValue) {
     const galleryTemplate = document.querySelector('#gallery-template').content;
     const photoItem = galleryTemplate.querySelector('.')
-}
+}*/
 
 
 
@@ -68,10 +68,6 @@ gallery.addEventListener('click', (evt) => {
 });
 
 //Состояние кнопки лайка
-
-
-
-
 
 
 
@@ -100,6 +96,25 @@ const initialCards = [
     {
       name: 'Байкал',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
+    },
   ]; 
+
+
+initialCards.forEach(card => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
+  return createCard(card);
+});
+
+
+function createCard(item) {
+  const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
+  const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
+  galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
+  galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
+  galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
+  gallery.append(galleryItem); //Добавляем в галерею карточку
+  galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
+  galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
+  galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
+};
+
 
