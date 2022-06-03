@@ -1,10 +1,17 @@
 // Используем .querySelector()
-let editButton = document.querySelector('.profile__button-edit'); //Кладем в переменную кнопку Редактировать"
-let addButton = document.querySelector('.profile__button-add') //Кладем в переменную кнопку Добавить"
-let popup = document.querySelector('.popup'); //Кладем в переменную элемент с классом "popup" - блок с формой
-let popupAdd = document.querySelector('.popup_add_photo'); //Кладем в переменную элемент с классом "popup_add_photo" - блок с формой
-let closeButton = document.querySelector('.popup__button-close'); //Кладем в переменную элемент с классом "popup__button_close" - блок с крестиком "закрыть"
+//---КНОПКИ---//
+let editButton = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
+let addButton = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
+let closeButtons = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
+let createButton = document.querySelector('.popup__button-create'); //Кнопка [+] добавить
+let deleteButton = document.querySelectorAll('.photo__button-delete'); //Кнопка "Удалить" фото
+
+//---POPUPS---//
+let popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
+let popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
+
 let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею"
+
 // Находим форму в DOM
 let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
@@ -13,25 +20,38 @@ let jobInput = document.querySelector('.popup__item_type_about'); // Воспо�
 let profileName = document.querySelector('.profile__name');
 let profileProf = document.querySelector('.profile__prof');
 
-function popupOpen() {
-    popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
-    nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
-    jobInput.value = profileProf.textContent;
-}
-function popupClose() {
-    popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
-}
+//------------ Open-Popups -------------//
+
+function popupOpenEdit() {
+  popupEdit.classList.add('popup_opened'); //Функция добавляет класс popup_opened
+  nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
+  jobInput.value = profileProf.textContent;
+};
+function popupOpenAdd() {
+  popupAdd.classList.add('popup_opened');
+};
+//------------ END ---------------------//
+
+//------------ Close-Popups -------------//
 
 
-function popupAddOpen() {
-    popupAdd.classList.add('popup_opened'); //Функция добавляет класс popup_opened
-    nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
-    jobInput.value = profileProf.textContent;
-}
-function popupAddClose() {
-    popupAdd.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
-}
+function closePopup(popup) {
+  popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
+};
 
+function handleClickClosePopup(evt) {
+  closePopup(evt.target.closest('.popup'));
+};
+
+closeButtons.forEach(button => {
+  button.addEventListener('click', handleClickClosePopup);
+});
+//------------ END ---------------------//
+
+// Удаление фото
+gallery.addEventListener('click', (evt) => {
+  evt.target.closest('.photo').remove();
+});
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -41,17 +61,17 @@ function formSubmitHandler (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
 
     // Вставьте новые значения с помощью textContent
-    popupClose();
+    closePopup(popupEdit);
 };
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-editButton.addEventListener('click', popupOpen); //Открытие формы по клику на кнопку
-addButton.addEventListener('click', popupAddOpen); //Открытие формы по клику на кнопку
-closeButton.addEventListener('click', popupClose); //Закрытие формы по клику на крестик
+editButton.addEventListener('click', popupOpenEdit); //Открытие формы по клику на кнопку
+addButton.addEventListener('click', popupOpenAdd); //Открытие формы по клику на кнопку
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 formProfile.addEventListener('submit', formSubmitHandler); 
+createButton.addEventListener('click', createCardForm);
 
 //Добавление фото
 /*function addPlace(nameValue, linkValue) {
@@ -62,14 +82,14 @@ formProfile.addEventListener('submit', formSubmitHandler);
 
 
 
-// Удаление фото
-gallery.addEventListener('click', (evt) => {
-    evt.target.closest('.photo').remove();
-});
+
 
 //Состояние кнопки лайка
 
 
+//--- ГАЛЕРЕЯ ---//
+const addName = document.querySelector('.popup__item_type_caption');
+const addLink = document.querySelector('.popup__item_type_link');
 
 
 const initialCards = [
@@ -112,9 +132,15 @@ function createCard(item) {
   galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
   gallery.append(galleryItem); //Добавляем в галерею карточку
-  galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
-  galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
 };
 
-
+function createCardForm(evt) {
+  evt.preventDefault();
+  const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
+  const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
+  galleryItem.querySelector('.photo__title').textContent = addName.value; //Кладем в теги названия карточки название из массива
+  galleryItem.querySelector('.photo__title').alt = addName.value; //То же и с описанием
+  galleryItem.querySelector('.photo__item').src = addLink.value; //Из массива в атрибут src кладем ссылку
+  gallery.prepend(galleryItem); //Добавляем в галерею карточку
+  closePopup(popupAdd);
+};
