@@ -3,7 +3,7 @@
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
-const btnCreate = document.querySelector('.popup_button-create'); //Кнопка [+] добавить
+const btnCreate = document.querySelector('.popup__button-create'); //Кнопка [+] добавить
 
 //---POPUPS---//
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
