@@ -1,17 +1,17 @@
 // Используем .querySelector()
 //---КНОПКИ---//
-let btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
-let btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
-let btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
-let btnCreate = document.querySelector('.create_button'); //Кнопка [+] добавить
+const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
+const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
+const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
+const btnCreate = document.querySelector('.create_button'); //Кнопка [+] добавить
 
 //---POPUPS---//
-let popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
-let popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
-let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
-let fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
+const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
+const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
+const gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
+const fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
 // Находим форму в DOM
-let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
+const formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
@@ -19,8 +19,34 @@ let jobInput = document.querySelector('.popup__item_type_about'); // Воспо�
 let profileName = document.querySelector('.profile__name');
 let profileProf = document.querySelector('.profile__prof');
 //--- ГАЛЕРЕЯ ---//
-const addName = document.querySelector('.popup__item_type_caption');
-const addLink = document.querySelector('.popup__item_type_link');
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
+]; 
+let nameAdd = document.querySelector('.popup__item_type_caption');
+let linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 
 function popupOpenEdit() {
@@ -92,32 +118,7 @@ function setLike(item) {
 };
 
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-  ]; 
+
 
 
 initialCards.forEach(card => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
@@ -142,16 +143,16 @@ function createCardForm(evt) {
   evt.preventDefault();
   const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
-  galleryItem.querySelector('.photo__title').textContent = addName.value; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__item').alt = addName.value; //То же и с описанием
-  galleryItem.querySelector('.photo__item').src = addLink.value; //Из массива в атрибут src кладем ссылку
+  galleryItem.querySelector('.photo__title').textContent = nameAdd.value; //Кладем в теги названия карточки название из массива
+  galleryItem.querySelector('.photo__item').alt = nameAdd.value; //То же и с описанием
+  galleryItem.querySelector('.photo__item').src = linkAdd.value; //Из массива в атрибут src кладем ссылку
   setLike(galleryItem);
   deleteItem(galleryItem);
   popupOpenImage(galleryItem);
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
   closePopup(popupAdd);  
   console.log(galleryItem.querySelector('.photo__title').alt);
-  addName.value = "";
-  addLink.value = "";
+  nameAdd.value = "";
+  linkAdd.value = "";
 };
 
