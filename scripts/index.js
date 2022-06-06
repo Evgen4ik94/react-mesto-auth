@@ -33,11 +33,11 @@ function popupOpenAdd() {
 };
 function popupOpenImage(image) {
   image.querySelector('.photo__item').addEventListener('click', evt => {
-    const popupImage = document.querySelector('.popup__image');
-    const popupImageCaption = document.querySelector('.popup__image-caption');
-    popupImage.src = image.src;
-    popupImageCaption.textContent = image.alt;
-    popupImageCaption.alt = image.alt;
+    const popupImage = fullImage.querySelector('.popup__image');
+    const popupImageCaption = fullImage.querySelector('.popup__image-caption');
+    popupImage.src = evt.target.src;
+    popupImageCaption.textContent = evt.target.alt;
+    popupImageCaption.alt = evt.target.alt;
     fullImage.classList.add('popup_opened');
   });
 };
@@ -45,7 +45,7 @@ function popupOpenImage(image) {
 
 //------------ Close-Popups -------------//
 function closePopup(popup) {
-  popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
+  popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
 };
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
@@ -129,11 +129,12 @@ function createCard(item) {
   const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
   galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
+  galleryItem.querySelector('.photo__item').alt = item.name; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
+  console.log(galleryItem.querySelector('.photo__title').alt);
   setLike(galleryItem);
   deleteItem(galleryItem);
-  popupOpenImage(galleryItem)
+  popupOpenImage(galleryItem);
   gallery.append(galleryItem); //Добавляем в галерею карточки из коробки
 };
 
@@ -142,13 +143,14 @@ function createCardForm(evt) {
   const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
   galleryItem.querySelector('.photo__title').textContent = addName.value; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__title').alt = addName.value; //То же и с описанием
+  galleryItem.querySelector('.photo__item').alt = addName.value; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = addLink.value; //Из массива в атрибут src кладем ссылку
-  setLike(galleryItem)
-  deleteItem(galleryItem)
-  popupOpenImage(galleryItem)
+  setLike(galleryItem);
+  deleteItem(galleryItem);
+  popupOpenImage(galleryItem);
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
-  closePopup(popupAdd);
+  closePopup(popupAdd);  
+  console.log(galleryItem.querySelector('.photo__title').alt);
   addName.value = "";
   addLink.value = "";
 };
