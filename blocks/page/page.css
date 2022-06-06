@@ -14,7 +14,6 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
-    transition: all .5s ease-in-out;
 }
 @media screen and (max-width: 1280px) {
     .page {

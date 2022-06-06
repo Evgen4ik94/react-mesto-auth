@@ -1,13 +1,18 @@
 .popup {
     margin: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, .5);
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: none;
-    transition: visibility .7s,opacity .7s linear;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 0.5s, opacity 0.5s ease;
+    -moz-transition: visibility 0.5s, opacity 0.5s ease;
+    -o-transition: visibility 0.5s, opacity 0.5s ease;
+    transition: all 0.5s ease;
 }

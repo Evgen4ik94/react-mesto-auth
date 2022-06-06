@@ -1,9 +1,9 @@
 // Используем .querySelector()
 //---КНОПКИ---//
-let editButton = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
-let addButton = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
-let closeButtons = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
-let createButton = document.querySelector('.create_button'); //Кнопка [+] добавить
+let btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
+let btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
+let btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
+let btnCreate = document.querySelector('.create_button'); //Кнопка [+] добавить
 
 //---POPUPS---//
 let popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
@@ -50,7 +50,7 @@ function closePopup(popup) {
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
 }
-closeButtons.forEach(button => {
+btnsClose.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
 //------------ END ---------------------//
@@ -73,14 +73,14 @@ function formSubmitHandler (evt) {
     closePopup(popupEdit);
 };
 // Прикрепляем обработчики к формам:
-editButton.addEventListener('click', popupOpenEdit); //Открытие формы редактирования профиля по клику на кнопку
-addButton.addEventListener('click', popupOpenAdd); //Открытие формы добавления карточки по клику на кнопку
+btnEdit.addEventListener('click', popupOpenEdit); //Открытие формы редактирования профиля по клику на кнопку
+btnAdd.addEventListener('click', popupOpenAdd); //Открытие формы добавления карточки по клику на кнопку
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 formProfile.addEventListener('submit', formSubmitHandler); 
 //Обработчик добавления карточки
-createButton.addEventListener('click', createCardForm);
+btnCreate.addEventListener('click', createCardForm);
 
 
 

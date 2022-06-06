@@ -6,7 +6,6 @@
     max-width: 880px;
     margin: 0 auto;
     padding: 40px 0 0;
-    transition: .5s ease-in-out;
 }
 @media screen and (max-width: 900px) {
     .profile {

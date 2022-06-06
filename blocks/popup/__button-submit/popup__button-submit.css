@@ -10,7 +10,6 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    transition: all .5s ease;
     text-align: center;
 }
 .popup__button-submit:hover {
