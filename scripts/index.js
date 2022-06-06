@@ -4,15 +4,12 @@ let editButton = document.querySelector('.profile__button-edit'); //Кнопка
 let addButton = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 let closeButtons = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
 let createButton = document.querySelector('.create_button'); //Кнопка [+] добавить
-let deleteButton = document.querySelectorAll('.photo__button-delete'); //Кнопка "Удалить" фото
-let likeButtons = document.querySelectorAll('.photo__button-like');
-console.log(likeButtons);
 
 //---POPUPS---//
 let popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 let popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
-let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею"
-
+let gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
+let fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
 // Находим форму в DOM
 let formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 
@@ -34,28 +31,38 @@ function popupOpenEdit() {
 function popupOpenAdd() {
   popupAdd.classList.add('popup_opened');
 };
+function popupOpenImage(image) {
+  image.querySelector('.photo__item').addEventListener('click', evt => {
+    const popupImage = document.querySelector('.popup__image');
+    const popupImageCaption = document.querySelector('.popup__image-caption');
+    popupImage.src = image.src;
+    popupImageCaption.textContent = image.alt;
+    popupImageCaption.alt = image.alt;
+    fullImage.classList.add('popup_opened');
+  });
+};
 //------------ END ---------------------//
 
 //------------ Close-Popups -------------//
-
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened
 };
-
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
-};
-
+}
 closeButtons.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
 //------------ END ---------------------//
 
-// Удаление фото
-/*gallery.addEventListener('click', (evt) => {
-  evt.target.closest('.photo').remove();
-});*/
+//------------ Delete photo -------------//
+function deleteItem(item) {
+  item.querySelector('.photo__button-delete').addEventListener('click', evt => {
+    evt.target.closest('.photo').remove();
+  })
+}
+//------------ END ---------------------//
+
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -78,18 +85,11 @@ createButton.addEventListener('click', createCardForm);
 
 
 //Состояние кнопки лайка
-function likeInit(evt) {
-  evt.target.classList.toggle('photo__button-like_active');
+function setLike(item) {
+  item.querySelector('.photo__button-like').addEventListener('click', evt => {
+    evt.target.classList.toggle('photo__button-like_active');
+  })
 };
-
-/*function setLike(evt) {
-  likeInit(.closest('.photo'));
-};*/
-
-likeButtons.forEach(like => {
-  like.addEventListener('click', likeInit)
-});
-
 
 
 const initialCards = [
@@ -131,7 +131,10 @@ function createCard(item) {
   galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
   galleryItem.querySelector('.photo__title').alt = item.name; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
-  gallery.append(galleryItem); //Добавляем в галерею карточку
+  setLike(galleryItem);
+  deleteItem(galleryItem);
+  popupOpenImage(galleryItem)
+  gallery.append(galleryItem); //Добавляем в галерею карточки из коробки
 };
 
 function createCardForm(evt) {
@@ -141,8 +144,12 @@ function createCardForm(evt) {
   galleryItem.querySelector('.photo__title').textContent = addName.value; //Кладем в теги названия карточки название из массива
   galleryItem.querySelector('.photo__title').alt = addName.value; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = addLink.value; //Из массива в атрибут src кладем ссылку
+  setLike(galleryItem)
+  deleteItem(galleryItem)
+  popupOpenImage(galleryItem)
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
   closePopup(popupAdd);
   addName.value = "";
   addLink.value = "";
 };
+
