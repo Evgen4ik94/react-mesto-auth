@@ -49,15 +49,15 @@ let nameAdd = document.querySelector('.popup__item_type_caption');
 let linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 
-function popupOpenEdit() {
+function openEditPopup() {
   popupEdit.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
   jobInput.value = profileProf.textContent;
 };
-function popupOpenAdd() {
+function openAddPopup() {
   popupAdd.classList.add('popup_opened');
 };
-function popupOpenImage(image) {
+function openImagePopup(image) {
   image.querySelector('.photo__item').addEventListener('click', evt => {
     const popupImage = fullImage.querySelector('.popup__image');
     const popupImageCaption = fullImage.querySelector('.popup__image-caption');
@@ -99,8 +99,8 @@ function formSubmitHandler (evt) {
     closePopup(popupEdit);
 };
 // Прикрепляем обработчики к формам:
-btnEdit.addEventListener('click', popupOpenEdit); //Открытие формы редактирования профиля по клику на кнопку
-btnAdd.addEventListener('click', popupOpenAdd); //Открытие формы добавления карточки по клику на кнопку
+btnEdit.addEventListener('click', openEditPopup); //Открытие формы редактирования профиля по клику на кнопку
+btnAdd.addEventListener('click', openAddPopup); //Открытие формы добавления карточки по клику на кнопку
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -132,10 +132,9 @@ function createCard(item) {
   galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
   galleryItem.querySelector('.photo__item').alt = item.name; //То же и с описанием
   galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
-  console.log(galleryItem.querySelector('.photo__title').alt);
   setLike(galleryItem);
   deleteItem(galleryItem);
-  popupOpenImage(galleryItem);
+  openImagePopup(galleryItem);
   gallery.append(galleryItem); //Добавляем в галерею карточки из коробки
 };
 
@@ -148,10 +147,9 @@ function createCardForm(evt) {
   galleryItem.querySelector('.photo__item').src = linkAdd.value; //Из массива в атрибут src кладем ссылку
   setLike(galleryItem);
   deleteItem(galleryItem);
-  popupOpenImage(galleryItem);
+  openImagePopup(galleryItem);
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
   closePopup(popupAdd);  
-  console.log(galleryItem.querySelector('.photo__title').alt);
   nameAdd.value = "";
   linkAdd.value = "";
 };
