@@ -22,7 +22,7 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__prof');
 //--- ГАЛЕРЕЯ ---//
 
-const initialCards = [
+/*const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -47,7 +47,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
-]; 
+]; */
 const nameAdd = document.querySelector('.popup__item_type_caption');
 const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
@@ -117,33 +117,31 @@ function setLike(item) {
 };
 
 
-
-
-
 initialCards.forEach(card => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
   return createCard(card);
 });
-
-
 function createCard(item) {
   const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
+  const photoItem = galleryItem.querySelector('.photo__item');
   galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__item').alt = item.name; //То же и с описанием
-  galleryItem.querySelector('.photo__item').src = item.link; //Из массива в атрибут src кладем ссылку
+  photoItem.alt = item.name; //То же и с описанием
+  photoItem.src = item.link; //Из массива в атрибут src кладем ссылку
   setLike(galleryItem);
   deleteItem(galleryItem);
   openImagePopup(galleryItem);
   gallery.append(galleryItem); //Добавляем в галерею карточки из коробки
 };
 
+
 function createCardForm(evt) {
   evt.preventDefault();
   const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
+  const photoItem = galleryItem.querySelector('.photo__item');
   galleryItem.querySelector('.photo__title').textContent = nameAdd.value; //Кладем в теги названия карточки название из массива
-  galleryItem.querySelector('.photo__item').alt = nameAdd.value; //То же и с описанием
-  galleryItem.querySelector('.photo__item').src = linkAdd.value; //Из массива в атрибут src кладем ссылку
+  photoItem.alt = nameAdd.value; //То же и с описанием
+  photoItem.src = linkAdd.value; //Из массива в атрибут src кладем ссылку
   setLike(galleryItem);
   deleteItem(galleryItem);
   openImagePopup(galleryItem);
