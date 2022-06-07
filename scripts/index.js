@@ -106,8 +106,8 @@ function createCard(card) {
 function createCardForm(evt) {
   evt.preventDefault();
   const card = {};
-  card.link = nameAdd.value; //То же и с описанием
-  card.name = linkAdd.value; //Из массива в атрибут src кладем ссылку
+  card.link = linkAdd.value; //То же и с описанием
+  card.name = nameAdd.value; //Из массива в атрибут src кладем ссылку
   const cardItem = createCard(card)
   gallery.prepend(cardItem);  
   closePopup(popupAdd);  
