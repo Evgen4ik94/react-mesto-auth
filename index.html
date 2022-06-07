@@ -40,6 +40,7 @@
         <p class="footer__author">&copy; 2022 Евгений Миляков</p>
     </footer>
 <!-- POP-UPS -->
+    <!-- Редактировать профиль -->
     <div class="popup popup_edit_profile">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
@@ -55,16 +56,17 @@
             </form>
         </div>
     </div>
+    <!-- Добавить фото -->
     <div class="popup popup_add_photo">
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Новое место</h3>
             <form class="popup__form popup__form_type_create-card" action="#" method="POST" name="placeInfo" novalidate>
                 <label class="popup__block">
-                    <input type="text" name="name" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="1" maxlength="30" id="name-input">
+                    <input type="text" name="title" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="1" maxlength="30" id="title-input">
                 </label>
                 <label class="popup__block">
-                    <input type="url" name="link" placeholder="Ссылка на изображение" class="popup__item popup__item_type_link" required id="url-input">
+                    <input type="url" name="src" placeholder="Ссылка на изображение" class="popup__item popup__item_type_link" required id="url-input">
                 </label>
                 <button type="submit" class="popup__button-submit popup__button-create">Создать</button>
             </form>

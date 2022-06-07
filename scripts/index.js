@@ -12,6 +12,8 @@ const gallery = document.querySelector('.gallery__list');//Кладем в пе�
 const fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
 const popupImage = fullImage.querySelector('.popup__image');
 const popupImageCaption = fullImage.querySelector('.popup__image-caption');
+
+
 // Находим форму в DOM
 const formProfile =  document.querySelector('.popup__form_type_edit');// Воспользуйтесь методом querySelector()
 const formCreateCard = document.querySelector('.popup__form_type_create-card');
@@ -21,33 +23,7 @@ const jobInput = document.querySelector('.popup__item_type_about'); // Восп�
 const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__prof');
 //--- ГАЛЕРЕЯ ---//
-
-/*const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-]; */
+const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
 const nameAdd = document.querySelector('.popup__item_type_caption');
 const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
@@ -101,11 +77,7 @@ function submitFormHandler (evt) {
 btnEdit.addEventListener('click', () => openPopup(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
 btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-formProfile.addEventListener('submit', submitFormHandler); 
-//Обработчик добавления карточки
-formCreateCard.addEventListener('submit', createCardForm);
+
 
 
 
@@ -117,36 +89,36 @@ function setLike(item) {
 };
 
 
-initialCards.forEach(card => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
-  return createCard(card);
-});
-function createCard(item) {
-  const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
+
+function createCard(card) {
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
   const photoItem = galleryItem.querySelector('.photo__item');
-  galleryItem.querySelector('.photo__title').textContent = item.name; //Кладем в теги названия карточки название из массива
-  photoItem.alt = item.name; //То же и с описанием
-  photoItem.src = item.link; //Из массива в атрибут src кладем ссылку
+  galleryItem.querySelector('.photo__title').textContent = card.name; //Кладем в теги названия карточки название из массива
+  photoItem.src = card.link; //Из массива в атрибут src кладем ссылку
+  photoItem.alt = card.name; //То же и с описанием
   setLike(galleryItem);
   deleteItem(galleryItem);
   openImagePopup(galleryItem);
-  gallery.append(galleryItem); //Добавляем в галерею карточки из коробки
+  return galleryItem; //Возвращает разметку карточки с содержимым
 };
 
 
 function createCardForm(evt) {
   evt.preventDefault();
-  const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
-  const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
-  const photoItem = galleryItem.querySelector('.photo__item');
-  galleryItem.querySelector('.photo__title').textContent = nameAdd.value; //Кладем в теги названия карточки название из массива
-  photoItem.alt = nameAdd.value; //То же и с описанием
-  photoItem.src = linkAdd.value; //Из массива в атрибут src кладем ссылку
-  setLike(galleryItem);
-  deleteItem(galleryItem);
-  openImagePopup(galleryItem);
-  gallery.prepend(galleryItem); //Добавляем в галерею карточку
+  const card = {};
+  card.link = nameAdd.value; //То же и с описанием
+  card.name = linkAdd.value; //Из массива в атрибут src кладем ссылку
+  const cardItem = createCard(card)
+  gallery.prepend(cardItem);  
   closePopup(popupAdd);  
   formCreateCard.reset()
 };
-
+initialCards.forEach((card) => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
+  const cardItem = createCard(card)
+  gallery.prepend(cardItem);
+});
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+formProfile.addEventListener('submit', submitFormHandler); 
+//Обработчик добавления карточки
+formCreateCard.addEventListener('submit', createCardForm);
