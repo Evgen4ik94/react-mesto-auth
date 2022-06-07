@@ -104,12 +104,11 @@ function createCard(card) {
 
 
 function createCardForm(evt) {
-  evt.preventDefault();
-  const card = {};
-  card.link = linkAdd.value; //То же и с описанием
-  card.name = nameAdd.value; //Из массива в атрибут src кладем ссылку
-  const cardItem = createCard(card)
-  gallery.prepend(cardItem);  
+  evt.preventDefault(); //Запрещаем стандартную отправку формы
+  const card = {}; //Создаем пустой список объектов
+  card.link = linkAdd.value; //В список кладем объект link со значением из linkAdd - поля ввода ссылки на картинку
+  card.name = nameAdd.value; //В список кладем объект name со значением из nameAdd - поля ввода названия картинки
+  gallery.prepend(createCard(card));  
   closePopup(popupAdd);  
   formCreateCard.reset()
 };
