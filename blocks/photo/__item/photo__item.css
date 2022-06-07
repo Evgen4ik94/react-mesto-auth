@@ -4,6 +4,8 @@
     padding: 0;
     height: 282px;
     background-color: #000;
+    object-fit: cover;
+    display: block;
 }
 .photo__item:hover {
     cursor: pointer;

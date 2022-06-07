@@ -13,8 +13,8 @@ const fullImage = document.querySelector('.popup_type_fullscreen-image'); //По
 const popupImage = fullImage.querySelector('.popup__image');
 const popupImageCaption = fullImage.querySelector('.popup__image-caption');
 // Находим форму в DOM
-const formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
-
+const formProfile =  document.querySelector('.popup__form_type_edit');// Воспользуйтесь методом querySelector()
+const formCreateCard = document.querySelector('.popup__form_type_create-card');
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
@@ -51,26 +51,20 @@ const initialCards = [
 const nameAdd = document.querySelector('.popup__item_type_caption');
 const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
-
-function openEditPopup() {
-  popupEdit.classList.add('popup_opened'); //Функция добавляет класс popup_opened
+function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
+  popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
   jobInput.value = profileProf.textContent;
 };
-function openAddPopup() {
-  popupAdd.classList.add('popup_opened');
-};
 
 function openImagePopup(image) {
-  image.querySelector('.photo__item').addEventListener('click', evt => {
-    popupImage.src = evt.target.src;
+  image.querySelector('.photo__item').addEventListener('click', evt => { //По клику на DOM элемент с картинкой выполняется функция
+    popupImage.src = evt.target.src;                                     // которая заполняет атрибуты элементов поп-апа
     popupImageCaption.textContent = evt.target.alt;
     popupImageCaption.alt = evt.target.alt;
-    fullImage.classList.add('popup_opened');
+    openPopup(fullImage); // И вызывается функция открытия поп-апа
   });
 };
-
-
 //------------ END ---------------------//
 
 //------------ Close-Popups -------------//
@@ -94,7 +88,7 @@ function deleteItem(item) {
 //------------ END ---------------------//
 
 
-function formSubmitHandler (evt) {
+function submitFormHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства valueZ
     profileProf.textContent = jobInput.value;
@@ -103,14 +97,15 @@ function formSubmitHandler (evt) {
     closePopup(popupEdit);
 };
 // Прикрепляем обработчики к формам:
-btnEdit.addEventListener('click', openEditPopup); //Открытие формы редактирования профиля по клику на кнопку
-btnAdd.addEventListener('click', openAddPopup); //Открытие формы добавления карточки по клику на кнопку
+
+btnEdit.addEventListener('click', () => openPopup(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
+btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-formProfile.addEventListener('submit', formSubmitHandler); 
+formProfile.addEventListener('submit', submitFormHandler); 
 //Обработчик добавления карточки
-btnCreate.addEventListener('click', createCardForm);
+formCreateCard.addEventListener('submit', createCardForm);
 
 
 
@@ -154,7 +149,6 @@ function createCardForm(evt) {
   openImagePopup(galleryItem);
   gallery.prepend(galleryItem); //Добавляем в галерею карточку
   closePopup(popupAdd);  
-  nameAdd.value = "";
-  linkAdd.value = "";
+  formCreateCard.reset()
 };
 

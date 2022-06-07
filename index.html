@@ -53,7 +53,7 @@
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Редактировать профиль</h3>
-            <form class="popup__form" name="profile-edit">
+            <form class="popup__form popup__form_type_edit" name="profile-edit">
                 <label class="popup__block">
                     <input type="text" class="popup__item popup__item_type_name" id="name" name="name" placeholder="Имя">
                 </label>
@@ -68,7 +68,7 @@
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Новое место</h3>
-            <form class="popup__form" action="#" method="POST" name="placeInfo" novalidate>
+            <form class="popup__form popup__form_type_create-card" action="#" method="POST" name="placeInfo" novalidate>
                 <label class="popup__block">
                     <input type="text" name="name" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="1" maxlength="30" id="name-input">
                 </label>
