@@ -8,16 +8,6 @@
     <title>Mesto</title>
 </head>
 <body class="page">
-    <template id="gallery-template">
-        <li class="photo">
-            <button class="photo__button-delete" type="button" title="Удалить"></button>
-            <img class="photo__item" src="#" alt="Title">
-            <div class="photo__description">
-                <h2 class="photo__title"></h2>
-                <button class="photo__button-like" title="Лайк" type="button"></button>
-            </div>
-        </li>
-    </template>
 <!-- ШАПКА -->
         <header class="header">
             <img class="header__logo" src="./images/header-logo.svg" alt="Место">
@@ -40,54 +30,6 @@
 <!-- ГАЛЕРЕЯ -->
     <section class="gallery">
         <ul class="gallery__list">
-            <!--<li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <div class="photo__description">
-                    <h2 class="photo__title">Карачаевск</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>
-            <li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-                <div class="photo__description">
-                    <h2 class="photo__title">Гора Эльбрус</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>
-            <li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
-                <div class="photo__description">
-                    <h2 class="photo__title">Домбай</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>
-            <li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-                <div class="photo__description">
-                    <h2 class="photo__title">Гора Эльбрус</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>
-            <li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/dombai.jpg" alt="Домбай">
-                <div class="photo__description">
-                    <h2 class="photo__title">Домбай</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>
-            <li class="photo">
-                <button class="photo__button-delete" type="button" title="Удалить"></button>
-                <img class="photo__item" src="./images/karachaevsk.jpg" alt="Карачаево-Черкесия">
-                <div class="photo__description">
-                    <h2 class="photo__title">Карачаево-Черкесия</h2>
-                    <button class="photo__button-like" title="Поставить лайк" type="button"></button>
-                </div>
-            </li>-->
         </ul>
     </section>
 <!-- POPUP FULLSCREEN-IMAGE-->
@@ -137,6 +79,17 @@
             </form>
         </div>
     </div>
+<!-- TEMPLATE -->
+<template id="gallery-template">
+    <li class="photo">
+        <button class="photo__button-delete" type="button" title="Удалить"></button>
+        <img class="photo__item" src="#" alt="Title">
+        <div class="photo__description">
+            <h2 class="photo__title"></h2>
+            <button class="photo__button-like" title="Лайк" type="button"></button>
+        </div>
+    </li>
+</template>
 <!-- СКРИПТ -->
     <script src="./scripts/index.js"></script>
 </body>

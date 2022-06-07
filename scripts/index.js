@@ -10,15 +10,18 @@ const popupEdit = document.querySelector('.popup_edit_profile'); //Форма р
 const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
 const gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
 const fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
+const popupImage = fullImage.querySelector('.popup__image');
+const popupImageCaption = fullImage.querySelector('.popup__image-caption');
 // Находим форму в DOM
 const formProfile =  document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 
 // Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
-let profileName = document.querySelector('.profile__name');
-let profileProf = document.querySelector('.profile__prof');
+const nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
+const jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
+const profileName = document.querySelector('.profile__name');
+const profileProf = document.querySelector('.profile__prof');
 //--- ГАЛЕРЕЯ ---//
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -45,8 +48,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
 ]; 
-let nameAdd = document.querySelector('.popup__item_type_caption');
-let linkAdd = document.querySelector('.popup__item_type_link');
+const nameAdd = document.querySelector('.popup__item_type_caption');
+const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 
 function openEditPopup() {
@@ -57,16 +60,17 @@ function openEditPopup() {
 function openAddPopup() {
   popupAdd.classList.add('popup_opened');
 };
+
 function openImagePopup(image) {
   image.querySelector('.photo__item').addEventListener('click', evt => {
-    const popupImage = fullImage.querySelector('.popup__image');
-    const popupImageCaption = fullImage.querySelector('.popup__image-caption');
     popupImage.src = evt.target.src;
     popupImageCaption.textContent = evt.target.alt;
     popupImageCaption.alt = evt.target.alt;
     fullImage.classList.add('popup_opened');
   });
 };
+
+
 //------------ END ---------------------//
 
 //------------ Close-Popups -------------//
