@@ -29,6 +29,9 @@ const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
+};
+function editProfile(popup) {
+  openPopup(popup);
   nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
   jobInput.value = profileProf.textContent;
 };
@@ -74,7 +77,7 @@ function submitFormHandler (evt) {
 };
 // Прикрепляем обработчики к формам:
 
-btnEdit.addEventListener('click', () => openPopup(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
+btnEdit.addEventListener('click', () => editProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
 btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
 
 
