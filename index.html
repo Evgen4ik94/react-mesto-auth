@@ -45,13 +45,11 @@
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Редактировать профиль</h3>
-            <form class="popup__form popup__form_type_edit" name="profile-edit">
-                <label class="popup__block">
-                    <input type="text" class="popup__item popup__item_type_name" id="name" name="name" placeholder="Имя">
-                </label>
-                <label class="popup__block">
-                    <input type="text" class="popup__item popup__item_type_about" id="about" name="about" placeholder="О себе">
-                </label>
+            <form class="popup__form popup__form_type_edit" name="profile_edit">
+                    <input required type="text" class="popup__item popup__item_type_name" id="name-item" name="name" placeholder="Имя" minlength="2" maxlength="40">
+                    <span class="popup__item-error name-item-error"></span>
+                    <input required type="text" class="popup__item popup__item_type_about" id="about-item" name="about" placeholder="О себе" minlength="2" maxlength="200">
+                    <span class="popup__item-error about-item-error"></span>
                 <button class="popup__button-submit popup__button-save" type="submit">Сохранить</button>
             </form>
         </div>
@@ -61,14 +59,12 @@
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Новое место</h3>
-            <form class="popup__form popup__form_type_create-card" action="#" method="POST" name="placeInfo" novalidate>
-                <label class="popup__block">
-                    <input type="text" name="title" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="1" maxlength="30" id="title-input">
-                </label>
-                <label class="popup__block">
-                    <input type="url" name="src" placeholder="Ссылка на изображение" class="popup__item popup__item_type_link" required id="url-input">
-                </label>
-                <button type="submit" class="popup__button-submit popup__button-create">Создать</button>
+            <form class="popup__form popup__form_type_create-card" action="#" method="POST" name="placeInfo">
+                <input required type="text" name="title" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="2" maxlength="30" id="title-item">
+                <span class="popup__item-error title-item-error"></span>
+                <input required type="url" name="link" placeholder="Ссылка на изображение" class="popup__item popup__item_type_link" required id="link-item">
+                <span class="popup__item-error link-item-error"></span>
+                <button type="submit" class="popup__button-submit popup__button-create popup__button-submit_disabled" disabled>Создать</button>
             </form>
         </div>
     </div>
@@ -96,5 +92,6 @@
 <!-- СКРИПТ -->
     <script src="./scripts/data.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
 </body>
 </html>

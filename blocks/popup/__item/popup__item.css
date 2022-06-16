@@ -7,9 +7,19 @@
     font-size: 14px;
     line-height: 17px;
     overflow: hidden;
+    margin: 0 0 30px;
+    box-sizing: border-box;
+}
+.popup__item:last-of-type {
+    margin: 0 0 45px;
 }
 .popup__item:focus {
     outline: none;
-    border-bottom: 1px solid red;
     cursor: text;
+}
+.popup__item:valid {
+    border-bottom: 1px solid green;
+}
+.popup__item:invalid {
+    border-bottom: 1px solid red;
 }

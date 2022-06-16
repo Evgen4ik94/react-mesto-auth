@@ -113,7 +113,8 @@ function createCardForm(evt) {
   card.name = nameAdd.value; //В список кладем объект name со значением из nameAdd - поля ввода названия картинки
   gallery.prepend(createCard(card));  
   closePopup(popupAdd);  
-  formCreateCard.reset()
+  formCreateCard.reset();
+  setSubmitButtonState(false);
 };
 initialCards.forEach((card) => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
   const cardItem = createCard(card)
@@ -124,3 +125,4 @@ initialCards.forEach((card) => { //Перебираем массив карто�
 formProfile.addEventListener('submit', submitFormHandler); 
 //Обработчик добавления карточки
 formCreateCard.addEventListener('submit', createCardForm);
+
