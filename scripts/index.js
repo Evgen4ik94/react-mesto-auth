@@ -56,6 +56,8 @@ function handleClickClosePopup(evt) {
 btnsClose.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
+
+
 //------------ END ---------------------//
 
 //------------ Delete photo -------------//
@@ -114,7 +116,6 @@ function createCardForm(evt) {
   gallery.prepend(createCard(card));  
   closePopup(popupAdd);  
   formCreateCard.reset();
-  setSubmitButtonState(false);
 };
 initialCards.forEach((card) => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
   const cardItem = createCard(card)
