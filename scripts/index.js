@@ -3,7 +3,6 @@
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
-const btnCreate = document.querySelector('.popup__button-create'); //Кнопка [+] добавить
 
 //---POPUPS---//
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
@@ -29,17 +28,17 @@ const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
-  document.addEventListener('keyup', closeEsc); //Добавляем обработчик для закрытия на клавишу Esc
-  popup.addEventListener('click', closeOverlay); //Добавляем обработчик для закрытия на клик по оверлею
+  document.addEventListener('keyup', handleClosePopupByEsc); //Добавляем обработчик для закрытия на клавишу Esc
+  popup.addEventListener('click', handleClosePopupByOverlay); //Добавляем обработчик для закрытия на клик по оверлею
 };
-function editProfile(popup) {
-  openPopup(popup);
+function openEditProfile(popup) {
   nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
   jobInput.value = profileProf.textContent;
+  openPopup(popup);
 };
 
-function openImagePopup(image) {
-  image.querySelector('.photo__item').addEventListener('click', evt => { //По клику на DOM элемент с картинкой выполняется функция
+function bindImagePopupOpenHandler(image) {
+  image.querySelector('.photo__item').addEventListener('click', (evt) => { //По клику на DOM элемент с картинкой выполняется функция
     popupImage.src = evt.target.src;                                     // которая заполняет атрибуты элементов поп-апа
     popupImageCaption.textContent = evt.target.alt;
     popupImageCaption.alt = evt.target.alt;
@@ -51,8 +50,8 @@ function openImagePopup(image) {
 //------------ Close-Popups -------------//
 function closePopup(popup) {
   popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
-  document.removeEventListener('keyup', closeEsc); //Удаляем обработчик для закрытия на клавишу Esc
-  popup.removeEventListener('click', closeOverlay); //Удаляем обработчик для закрытия на клик по оверлею
+  document.removeEventListener('keyup', handleClosePopupByEsc); //Удаляем обработчик для закрытия на клавишу Esc
+  popup.removeEventListener('click', handleClosePopupByOverlay); //Удаляем обработчик для закрытия на клик по оверлею
 };
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
@@ -61,12 +60,12 @@ btnsClose.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
 
-function closeEsc(evt) {
+function handleClosePopupByEsc(evt) {
   if (evt.key === "Escape") {
     closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
   }
 };
-function closeOverlay(evt) {
+function handleClosePopupByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
   }
@@ -74,15 +73,15 @@ function closeOverlay(evt) {
 //------------ END ---------------------//
 
 //------------ Delete photo -------------//
-function deleteItem(item) {
-  item.querySelector('.photo__button-delete').addEventListener('click', evt => {
+function bindCardDeleteHandler(card) {
+  card.querySelector('.photo__button-delete').addEventListener('click', evt => {
     evt.target.closest('.photo').remove();
   })
 }
 //------------ END ---------------------//
 
 
-function submitFormHandler (evt) {
+function handleEditProfileButtonSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства valueZ
     profileProf.textContent = jobInput.value;
@@ -90,38 +89,28 @@ function submitFormHandler (evt) {
     // Вставьте новые значения с помощью textContent
     closePopup(popupEdit);
 };
-// Прикрепляем обработчики к формам:
-
-btnEdit.addEventListener('click', () => editProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
-btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
-
-
-
-
 
 //Состояние кнопки лайка
-function setLike(item) {
-  item.querySelector('.photo__button-like').addEventListener('click', evt => {
+function bindLikeCardHandler(item) {
+  item.querySelector('.photo__button-like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('photo__button-like_active');
   })
 };
 
-
-
 function createCard(card) {
+  const btnLike = document.querySelector('.photo__button-like');
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
   const photoItem = galleryItem.querySelector('.photo__item');
   galleryItem.querySelector('.photo__title').textContent = card.name; //Кладем в теги названия карточки название из массива
   photoItem.src = card.link; //Из массива в атрибут src кладем ссылку
   photoItem.alt = card.name; //То же и с описанием
-  setLike(galleryItem);
-  deleteItem(galleryItem);
-  openImagePopup(galleryItem);
+  bindLikeCardHandler(galleryItem);
+  bindCardDeleteHandler(galleryItem);
+  bindImagePopupOpenHandler(galleryItem);
   return galleryItem; //Возвращает разметку карточки с содержимым
 };
 
-
-function createCardForm(evt) {
+function handleCreateCard(evt) {
   evt.preventDefault(); //Запрещаем стандартную отправку формы
   const card = {}; //Создаем пустой список объектов
   card.link = linkAdd.value; //В список кладем объект link со значением из linkAdd - поля ввода ссылки на картинку
@@ -134,9 +123,16 @@ initialCards.forEach((card) => { //Перебираем массив карто�
   const cardItem = createCard(card)
   gallery.prepend(cardItem);
 });
+
+
+// Прикрепляем обработчики к формам:
+
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-formProfile.addEventListener('submit', submitFormHandler); 
+formProfile.addEventListener('submit', handleEditProfileButtonSubmit); 
 //Обработчик добавления карточки
-formCreateCard.addEventListener('submit', createCardForm);
+formCreateCard.addEventListener('submit', handleCreateCard);
+btnEdit.addEventListener('click', () => openEditProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
+btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
+
 
