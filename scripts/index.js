@@ -29,6 +29,8 @@ const linkAdd = document.querySelector('.popup__item_type_link');
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
+  document.addEventListener('keyup', closeEsc); //Добавляем обработчик для закрытия на клавишу Esc
+  popup.addEventListener('click', closeOverlay); //Добавляем обработчик для закрытия на клик по оверлею
 };
 function editProfile(popup) {
   openPopup(popup);
@@ -49,6 +51,8 @@ function openImagePopup(image) {
 //------------ Close-Popups -------------//
 function closePopup(popup) {
   popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
+  document.removeEventListener('keyup', closeEsc); //Удаляем обработчик для закрытия на клавишу Esc
+  popup.removeEventListener('click', closeOverlay); //Удаляем обработчик для закрытия на клик по оверлею
 };
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
@@ -57,7 +61,16 @@ btnsClose.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
 
-
+function closeEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
+  }
+};
+function closeOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
+  }
+};
 //------------ END ---------------------//
 
 //------------ Delete photo -------------//
