@@ -53,7 +53,7 @@ function setEventListeners(formSelector) {
   });
 };
 function enableValidation() {
-  const formList = Array.from(document.querySelectorAll(formSelector));
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
   formList.forEach((formSelector) => {
     formSelector.addEventListener('submit', (evt) => {
       evt.preventDefault(); 
