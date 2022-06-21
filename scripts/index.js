@@ -6,6 +6,7 @@ const btnsClose = document.querySelectorAll('.popup__button-close'); //Кноп�
 
 
 //---POPUPS---//
+const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
 const gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
@@ -30,7 +31,6 @@ const linkAdd = document.querySelector('.popup__item_type_link');
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   document.addEventListener('keyup', handleClosePopupByEsc); //Добавляем обработчик для закрытия на клавишу Esc
-  popup.addEventListener('click', handleClosePopupByOverlay); //Добавляем обработчик для закрытия на клик по оверлею
 };
 function openEditProfile(popup) {
   nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
@@ -52,7 +52,7 @@ function bindImagePopupOpenHandler(image) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
   document.removeEventListener('keyup', handleClosePopupByEsc); //Удаляем обработчик для закрытия на клавишу Esc
-  popup.removeEventListener('click', handleClosePopupByOverlay); //Удаляем обработчик для закрытия на клик по оверлею
+  /*popup.removeEventListener('click', handleClosePopupByOverlay);*/ //Удаляем обработчик для закрытия на клик по оверлею
 };
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
@@ -135,4 +135,8 @@ formCreateCard.addEventListener('submit', handleCreateCard);
 btnEdit.addEventListener('click', () => openEditProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
 btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
 
-
+popup.forEach((item) => 
+  item.addEventListener('click', (evt) =>  {
+    evt.stopPropagation();
+    handleClosePopupByOverlay(evt);
+})); //Добавляем обработчик для закрытия на клик по оверлею

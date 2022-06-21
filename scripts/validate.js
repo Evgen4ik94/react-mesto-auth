@@ -22,21 +22,21 @@ function toggleButtonState(formSelector, {inputSelector, submitButtonSelector, i
 
                             /*----- ОШИБКИ -----*/
 /*--- Показать ошибку --*/
-function showInputError(formSelector, inputSelector, errorMessage, {errorClass, inputErrorClass}) {
+function showInputError(formSelector, inputSelector, errorMessage, {errorClass}) {
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(errorClass);
   };
 /*--- Скрыть ошибку --*/
-function hideInputError(formSelector, inputSelector, {errorClass, inputErrorClass}) {
+function hideInputError(formSelector, inputSelector, {errorClass}) {
     const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
     errorElement.classList.remove(errorClass);
     errorElement.textContent = '';
   };
                             /*--- Конец ---*/
 
-  /*--- Проверка валидности ---*/
-  function checkInputValidity(formSelector, inputSelector, rest) {
+/*--- Проверка валидности ---*/
+function checkInputValidity(formSelector, inputSelector, rest) {
   if (!inputSelector.validity.valid) { /*значение параметра valid объекта inputElement (поля ввода)*/
     showInputError(formSelector, inputSelector, inputSelector.validationMessage, rest); /*Если true => false - отображение сообщения об ошибке*/
   } else {
