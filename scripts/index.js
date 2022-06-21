@@ -4,6 +4,7 @@ const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
 
+
 //---POPUPS---//
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
@@ -98,7 +99,6 @@ function bindLikeCardHandler(item) {
 };
 
 function createCard(card) {
-  const btnLike = document.querySelector('.photo__button-like');
   const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
   const photoItem = galleryItem.querySelector('.photo__item');
   galleryItem.querySelector('.photo__title').textContent = card.name; //Кладем в теги названия карточки название из массива
