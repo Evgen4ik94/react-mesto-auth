@@ -1,4 +1,7 @@
-// Используем .querySelector()
+//Прописываем импорты//
+import Card from './Card.js';
+
+
 //---КНОПКИ---//
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
@@ -23,10 +26,12 @@ const nameInput = document.querySelector('.popup__item_type_name'); // Восп�
 const jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
 const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__prof');
+
 //--- ГАЛЕРЕЯ ---//
-const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
+/*const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
 const nameAdd = document.querySelector('.popup__item_type_caption');
-const linkAdd = document.querySelector('.popup__item_type_link');
+const linkAdd = document.querySelector('.popup__item_type_link');*/
+
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
@@ -119,9 +124,12 @@ function handleCreateCard(evt) {
   closePopup(popupAdd);  
   formCreateCard.reset();
 };
-initialCards.forEach((card) => { //Перебираем массив карточек из коробки и на каждой итерации возвращаем функцию createCard, которая создает одну карточку
-  const cardItem = createCard(card)
-  gallery.prepend(cardItem);
+initialCards.forEach((item) => {
+  // Создадим экземпляр карточки
+  const card = new Card(item.name, item.link);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+  gallery.prepend(cardElement);
 });
 
 
