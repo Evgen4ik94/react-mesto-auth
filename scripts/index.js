@@ -1,6 +1,6 @@
 //Прописываем импорты//
 import Card from './Card.js';
-
+import {initialCards} from './data.js'
 
 //---КНОПКИ---//
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
@@ -28,9 +28,9 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__prof');
 
 //--- ГАЛЕРЕЯ ---//
-/*const galleryTemplate = document.querySelector('#gallery-template').content; //Кладем в переменную содержимое тега template
+const cardSelector = '#gallery-template';
 const nameAdd = document.querySelector('.popup__item_type_caption');
-const linkAdd = document.querySelector('.popup__item_type_link');*/
+const linkAdd = document.querySelector('.popup__item_type_link');
 
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
@@ -78,14 +78,6 @@ function handleClosePopupByOverlay(evt) {
 };
 //------------ END ---------------------//
 
-//------------ Delete photo -------------//
-function bindCardDeleteHandler(card) {
-  card.querySelector('.photo__button-delete').addEventListener('click', evt => {
-    evt.target.closest('.photo').remove();
-  })
-}
-//------------ END ---------------------//
-
 
 function handleEditProfileButtonSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -96,37 +88,23 @@ function handleEditProfileButtonSubmit (evt) {
     closePopup(popupEdit);
 };
 
-//Состояние кнопки лайка
-function bindLikeCardHandler(item) {
-  item.querySelector('.photo__button-like').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('photo__button-like_active');
-  })
-};
 
-function createCard(card) {
-  const galleryItem = galleryTemplate.querySelector('.photo').cloneNode(true); //Клонируем в переменную разметку карточки
-  const photoItem = galleryItem.querySelector('.photo__item');
-  galleryItem.querySelector('.photo__title').textContent = card.name; //Кладем в теги названия карточки название из массива
-  photoItem.src = card.link; //Из массива в атрибут src кладем ссылку
-  photoItem.alt = card.name; //То же и с описанием
-  bindLikeCardHandler(galleryItem);
-  bindCardDeleteHandler(galleryItem);
-  bindImagePopupOpenHandler(galleryItem);
-  return galleryItem; //Возвращает разметку карточки с содержимым
-};
 
 function handleCreateCard(evt) {
   evt.preventDefault(); //Запрещаем стандартную отправку формы
-  const card = {}; //Создаем пустой список объектов
-  card.link = linkAdd.value; //В список кладем объект link со значением из linkAdd - поля ввода ссылки на картинку
-  card.name = nameAdd.value; //В список кладем объект name со значением из nameAdd - поля ввода названия картинки
-  gallery.prepend(createCard(card));  
+  // Создадим экземпляр карточки
+  const name = nameAdd.value;
+  const link = linkAdd.value;
+  const card = new Card({name, link}, cardSelector, bindImagePopupOpenHandler);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+  gallery.prepend(cardElement);
   closePopup(popupAdd);  
   formCreateCard.reset();
 };
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
-  const card = new Card(item.name, item.link);
+  const card = new Card(item, cardSelector, bindImagePopupOpenHandler);
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
   gallery.prepend(cardElement);

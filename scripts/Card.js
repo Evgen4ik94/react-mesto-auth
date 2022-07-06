@@ -1,16 +1,20 @@
 export default class Card {
-    constructor({name, link}, cardSelector, handleCardClick, handleDeleteBtnClick, handleLikeBtnClick) {
+    constructor({name, link}, cardSelector, bindImagePopupOpenHandler, bindLikeCardHandler, bindCardDeleteHandler) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
-    this._handleCardClick = handleCardClick;
-    this._handleDeleteBtnClick = handleDeleteBtnClick;
-    this._handleLikeBtnClick = handleLikeBtnClick;
+    this._bindImagePopupOpenHandler = bindImagePopupOpenHandler;
+    this._bindCardDeleteHandler = bindCardDeleteHandler;
+    this._bindLikeCardHandler = bindLikeCardHandler;
     }
 
     _getTemplate() {
-    const cardElement = document.querySelector('.photo').cloneNode(true);
-    this._cardElement = cardElement;
+      const cardElement = document
+      .querySelector(this._cardSelector)
+      .content
+      .querySelector('.photo')
+      .cloneNode(true);    
+      this._cardElement = cardElement;
     }
 
     _getConstants () {
@@ -37,7 +41,7 @@ export default class Card {
           this._deleteCard(); //
         });
     
-        this._imgElement.addEventListener('click', () => this._handleCardClick({
+        this._imgElement.addEventListener('click', () => this._bindImagePopupOpenHandler({
           name: this._name,
           link: this._link
         }));
@@ -46,12 +50,12 @@ export default class Card {
 
     generateCard() {
     this._getTemplate(); // Метод создает разметку карточки
-    this._getConstants(); //Метод создает константы
+    this._getConstants(); // Метод создает константы
     this._setEventListeners();
     this._deleteCard();
-    this._imgElement.querySelector('.photo__item').src = this._link;
-    this._imgTextElement.querySelector('.photo__title').textContent = this._name;
-    this._imgElement.querySelector('.photo__title').alt = this._name;
+    this._imgElement.src = this._link;
+    this._imgTextElement.textContent = this._name;
+    this._imgElement.alt = this._name;
     return this._cardElement;
     }
 }
