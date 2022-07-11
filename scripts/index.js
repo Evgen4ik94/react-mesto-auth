@@ -1,6 +1,7 @@
 //Прописываем импорты//
 import Card from './Card.js';
-import {initialCards} from './data.js'
+import {initialCards} from './data.js';
+import FormValidator from './FormValidator.js';
 
 //---КНОПКИ---//
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
@@ -17,7 +18,15 @@ const fullImage = document.querySelector('.popup_type_fullscreen-image'); //По
 const popupImage = fullImage.querySelector('.popup__image');
 const popupImageCaption = fullImage.querySelector('.popup__image-caption');
 
-
+//Параметры форм, передаваемые для проверки валидации//
+const formSettings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__item-error',
+  errorClass: 'popup__item-error_active'
+};
 // Находим форму в DOM
 const formProfile =  document.querySelector('.popup__form_type_edit');// Воспользуйтесь методом querySelector()
 const formCreateCard = document.querySelector('.popup__form_type_create-card');
@@ -32,6 +41,10 @@ const cardSelector = '#gallery-template';
 const nameAdd = document.querySelector('.popup__item_type_caption');
 const linkAdd = document.querySelector('.popup__item_type_link');
 
+// ВАЛИДАЦИЯ ФОРМ //
+const editFormValidation = new FormValidator(formSettings, formProfile);
+const placeFormValidation = new FormValidator(formSettings, formCreateCard);
+
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
@@ -42,15 +55,14 @@ function openEditProfile(popup) {
   jobInput.value = profileProf.textContent;
   openPopup(popup);
 };
-
 function bindImagePopupOpenHandler(image) {
-  image.querySelector('.photo__item').addEventListener('click', (evt) => { //По клику на DOM элемент с картинкой выполняется функция
-    popupImage.src = evt.target.src;                                     // которая заполняет атрибуты элементов поп-апа
-    popupImageCaption.textContent = evt.target.alt;
-    popupImageCaption.alt = evt.target.alt;
+   //По клику на DOM элемент с картинкой выполняется функция
+    popupImage.src = image.link;                                     // которая заполняет атрибуты элементов поп-апа
+    popupImageCaption.textContent = image.name;
+    popupImageCaption.alt = image.name;
     openPopup(fullImage); // И вызывается функция открытия поп-апа
-  });
-};
+  };
+
 //------------ END ---------------------//
 
 //------------ Close-Popups -------------//
@@ -89,7 +101,7 @@ function handleEditProfileButtonSubmit (evt) {
 };
 
 
-
+//Ручное создание карточки//
 function handleCreateCard(evt) {
   evt.preventDefault(); //Запрещаем стандартную отправку формы
   // Создадим экземпляр карточки
@@ -102,6 +114,7 @@ function handleCreateCard(evt) {
   closePopup(popupAdd);  
   formCreateCard.reset();
 };
+//Создание карточек "из коробки"//
 initialCards.forEach((item) => {
   // Создадим экземпляр карточки
   const card = new Card(item, cardSelector, bindImagePopupOpenHandler);
@@ -112,7 +125,6 @@ initialCards.forEach((item) => {
 
 
 // Прикрепляем обработчики к формам:
-
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 formProfile.addEventListener('submit', handleEditProfileButtonSubmit); 
@@ -126,3 +138,8 @@ popup.forEach((item) =>
     evt.stopPropagation();
     handleClosePopupByOverlay(evt);
 })); //Добавляем обработчик для закрытия на клик по оверлею
+
+ 
+//Активация валидации форм//
+editFormValidation.enableValidation();
+placeFormValidation.enableValidation();
