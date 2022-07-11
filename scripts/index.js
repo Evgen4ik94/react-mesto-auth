@@ -10,18 +10,17 @@ const btnsClose = document.querySelectorAll('.popup__button-close'); //Кноп�
 
 
 //---POPUPS---//
-const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
 const gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
-const fullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
-const popupImage = fullImage.querySelector('.popup__image');
-const popupImageCaption = fullImage.querySelector('.popup__image-caption');
+const popupFullImage = document.querySelector('.popup_type_fullscreen-image'); //Попап full-изображения
+const popupImage = popupFullImage.querySelector('.popup__image');
+const popupImageCaption = popupFullImage.querySelector('.popup__image-caption');
 
 //Параметры форм, передаваемые для проверки валидации//
 const formSettings = {
   formSelector: '.popup__form',
-  inputSelector: '.popup__item',
+  inputElement: '.popup__item',
   submitButtonSelector: '.popup__button-submit',
   inactiveButtonClass: 'popup__button-submit_disabled',
   inputErrorClass: 'popup__item-error',
@@ -60,7 +59,7 @@ function bindImagePopupOpenHandler(image) {
     popupImage.src = image.link;                                     // которая заполняет атрибуты элементов поп-апа
     popupImageCaption.textContent = image.name;
     popupImageCaption.alt = image.name;
-    openPopup(fullImage); // И вызывается функция открытия поп-апа
+    openPopup(popupFullImage); // И вызывается функция открытия поп-апа
   };
 
 //------------ END ---------------------//
@@ -85,7 +84,7 @@ function handleClosePopupByEsc(evt) {
 };
 function handleClosePopupByOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
+    closePopup(evt.target); //Закрываем открытый попап
   }
 };
 //------------ END ---------------------//
@@ -100,6 +99,12 @@ function handleEditProfileButtonSubmit (evt) {
     closePopup(popupEdit);
 };
 
+function renderCard({name, link}) {
+const card = new Card({name, link}, cardSelector, bindImagePopupOpenHandler);
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+  return cardElement;
+};
 
 //Ручное создание карточки//
 function handleCreateCard(evt) {
@@ -107,20 +112,13 @@ function handleCreateCard(evt) {
   // Создадим экземпляр карточки
   const name = nameAdd.value;
   const link = linkAdd.value;
-  const card = new Card({name, link}, cardSelector, bindImagePopupOpenHandler);
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-  gallery.prepend(cardElement);
+  gallery.prepend(renderCard({name, link}));
   closePopup(popupAdd);  
   formCreateCard.reset();
 };
 //Создание карточек "из коробки"//
 initialCards.forEach((item) => {
-  // Создадим экземпляр карточки
-  const card = new Card(item, cardSelector, bindImagePopupOpenHandler);
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-  gallery.prepend(cardElement);
+  gallery.prepend(renderCard(item));
 });
 
 
@@ -133,7 +131,7 @@ formCreateCard.addEventListener('submit', handleCreateCard);
 btnEdit.addEventListener('click', () => openEditProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
 btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
 
-popup.forEach((item) => 
+[popupAdd, popupEdit, popupFullImage].forEach((item) => 
   item.addEventListener('click', (evt) =>  {
     evt.stopPropagation();
     handleClosePopupByOverlay(evt);
