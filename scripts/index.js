@@ -8,7 +8,6 @@ const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
 const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
 
-
 //---POPUPS---//
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
 const popupAdd = document.querySelector('.popup_add_photo'); //Форма добавления карточки
@@ -29,6 +28,7 @@ const formSettings = {
 // Находим форму в DOM
 const formProfile =  document.querySelector('.popup__form_type_edit');// Воспользуйтесь методом querySelector()
 const formCreateCard = document.querySelector('.popup__form_type_create-card');
+
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__item_type_name'); // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector('.popup__item_type_about'); // Воспользуйтесь инструментом .querySelector()
@@ -46,6 +46,7 @@ const placeFormValidation = new FormValidator(formSettings, formCreateCard);
 
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
+  placeFormValidation.errorClear(); 
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   document.addEventListener('keyup', handleClosePopupByEsc); //Добавляем обработчик для закрытия на клавишу Esc
 };
@@ -56,7 +57,7 @@ function openEditProfile(popup) {
 };
 function bindImagePopupOpenHandler(image) {
    //По клику на DOM элемент с картинкой выполняется функция
-    popupImage.src = image.link;                                     // которая заполняет атрибуты элементов поп-апа
+    popupImage.src = image.link;  // которая заполняет атрибуты элементов поп-апа
     popupImageCaption.textContent = image.name;
     popupImageCaption.alt = image.name;
     openPopup(popupFullImage); // И вызывается функция открытия поп-апа
@@ -113,9 +114,10 @@ function handleCreateCard(evt) {
   const name = nameAdd.value;
   const link = linkAdd.value;
   gallery.prepend(renderCard({name, link}));
-  closePopup(popupAdd);  
   formCreateCard.reset();
+  closePopup(popupAdd);  
 };
+
 //Создание карточек "из коробки"//
 initialCards.forEach((item) => {
   gallery.prepend(renderCard(item));
