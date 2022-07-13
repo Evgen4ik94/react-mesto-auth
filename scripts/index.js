@@ -69,7 +69,6 @@ function bindImagePopupOpenHandler(image) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
   document.removeEventListener('keyup', handleClosePopupByEsc); //Удаляем обработчик для закрытия на клавишу Esc
-  /*popup.removeEventListener('click', handleClosePopupByOverlay);*/ //Удаляем обработчик для закрытия на клик по оверлею
 };
 function handleClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));

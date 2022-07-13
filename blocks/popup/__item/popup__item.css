@@ -20,6 +20,4 @@
 .popup__item:valid {
     border-bottom: 1px solid green;
 }
-.popup__item:invalid {
-    border-bottom: 1px solid red;
-}
+

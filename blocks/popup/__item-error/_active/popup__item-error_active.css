@@ -1,8 +1,9 @@
 .popup__item-error_active {
     visibility: visible;
-    margin: -25px 0 15px;
+    margin: -31px 0 15px;
     max-height: 15px;
+    border-top: 1px solid red;
 }
 .popup__item-error_active:last-of-type {
-    margin: -40px 0 30px;
+    margin: -46px 0 30px;
 }
