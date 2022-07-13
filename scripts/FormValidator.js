@@ -65,7 +65,8 @@ export default class FormValidator {
     errorClear() {
       this._inputList.forEach((inputElement) => this._hideInputError(inputElement));
       this._toggleButtonState();
-      this._form.reset();
+      if (this._form.classList.contains('popup__form_type_create-card')) {
+      this._form.reset(); console.log('Yes!');}
     }
   
     enableValidation() {

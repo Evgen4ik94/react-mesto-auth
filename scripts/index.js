@@ -46,7 +46,6 @@ const placeFormValidation = new FormValidator(formSettings, formCreateCard);
 
 //------------ Open-Popups -------------//
 function openPopup(popup) { //Функцию передаем в обработчик по клику на элемент DOM
-  placeFormValidation.errorClear(); 
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   document.addEventListener('keyup', handleClosePopupByEsc); //Добавляем обработчик для закрытия на клавишу Esc
 };
@@ -129,8 +128,9 @@ initialCards.forEach((item) => {
 formProfile.addEventListener('submit', handleEditProfileButtonSubmit); 
 //Обработчик добавления карточки
 formCreateCard.addEventListener('submit', handleCreateCard);
-btnEdit.addEventListener('click', () => openEditProfile(popupEdit)); //Открытие формы редактирования профиля по клику на кнопку
-btnAdd.addEventListener('click', () => openPopup(popupAdd)); //Открытие формы добавления карточки по клику на кнопку
+btnEdit.addEventListener('click', () => {openEditProfile(popupEdit), editFormValidation.errorClear()}); //Открытие формы редактирования профиля по клику на кнопку
+btnAdd.addEventListener('click', () => {openPopup(popupAdd), placeFormValidation.errorClear()}); //Открытие формы добавления карточки по клику на кнопку
+ 
 
 [popupAdd, popupEdit, popupFullImage].forEach((item) => 
   item.addEventListener('click', (evt) =>  {
