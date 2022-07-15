@@ -2,7 +2,8 @@
 import Card from './Card.js';
 import {initialCards} from './data.js';
 import FormValidator from './FormValidator.js';
-import popupWithForm from './popupWithForm.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './popupWithImage.js';
 
 //---КНОПКИ---//
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
@@ -49,23 +50,18 @@ function openPopup(popup) { //Функцию передаем в обработ�
   popup.classList.add('popup_opened'); //Функция добавляет класс popup_opened
   document.addEventListener('keyup', handleClosePopupByEsc); //Добавляем обработчик для закрытия на клавишу Esc
 };
-function openEditProfile(popup) {
-  nameInput.value = profileName.textContent;// Получите значение полей jobInput и nameInput из свойства valueZ
-  jobInput.value = profileProf.textContent;
-  openPopup(popup);
-};
+
+
+
 
 //Профиль пользователя, экземпляр класса popupWithForm
-const popupProfile = new popupWithForm('.popup__form_type_edit', (evt) => handleEditProfileButtonSubmit(evt));
+const popupProfile = new PopupWithForm('.popup__form_type_edit', handleEditProfileButtonSubmit(evt));
+popupProfile.setEventListeners();
 
 
-function bindImagePopupOpenHandler(image) {
-   //По клику на DOM элемент с картинкой выполняется функция
-    popupImage.src = image.link;  // которая заполняет атрибуты элементов поп-апа
-    popupImageCaption.textContent = image.name;
-    popupImageCaption.alt = image.name;
-    openPopup(popupFullImage); // И вызывается функция открытия поп-апа
-  };
+//Попап изображения, экземпляр класса popupWithImage
+const popupPlace = new PopupWithImage('.popup_type_fullscreen-image');
+popupPlace.open();
 
 //------------ END ---------------------//
 
