@@ -2,11 +2,11 @@
 import Card from './Card.js';
 import {initialCards} from './data.js';
 import FormValidator from './FormValidator.js';
+import popupWithForm from './popupWithForm.js';
 
 //---КНОПКИ---//
 const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
 const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото"
-const btnsClose = document.querySelectorAll('.popup__button-close'); //Кнопка "Закрыть" popup
 
 //---POPUPS---//
 const popupEdit = document.querySelector('.popup_edit_profile'); //Форма редактирования профиля
@@ -54,6 +54,11 @@ function openEditProfile(popup) {
   jobInput.value = profileProf.textContent;
   openPopup(popup);
 };
+
+//Профиль пользователя, экземпляр класса popupWithForm
+const popupProfile = new popupWithForm('.popup__form_type_edit', (evt) => handleEditProfileButtonSubmit(evt));
+
+
 function bindImagePopupOpenHandler(image) {
    //По клику на DOM элемент с картинкой выполняется функция
     popupImage.src = image.link;  // которая заполняет атрибуты элементов поп-апа
@@ -64,29 +69,6 @@ function bindImagePopupOpenHandler(image) {
 
 //------------ END ---------------------//
 
-//------------ Close-Popups -------------//
-function closePopup(popup) {
-  popup.classList.remove('popup_opened'); //Функция удаляет класс popup_opened у родительского элемента .popup, возвращаемого функцией handleClickClosePopup
-  document.removeEventListener('keyup', handleClosePopupByEsc); //Удаляем обработчик для закрытия на клавишу Esc
-};
-function handleClickClosePopup(evt) {
-  closePopup(evt.target.closest('.popup'));
-}
-btnsClose.forEach(button => {
-  button.addEventListener('click', handleClickClosePopup);
-});
-
-function handleClosePopupByEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector('.popup_opened')); //Закрываем открытый попап
-  }
-};
-function handleClosePopupByOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target); //Закрываем открытый попап
-  }
-};
-//------------ END ---------------------//
 
 
 function handleEditProfileButtonSubmit (evt) {
