@@ -45,7 +45,7 @@
         <div class="popup__container">
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Редактировать профиль</h3>
-            <form class="popup__form popup__form_type_edit" name="profile_edit">
+            <form class="popup__form popup__form_type_edit" name="userInfo">
                     <input required type="text" class="popup__item popup__item_type_name" id="name-item" name="name" placeholder="Имя" minlength="2" maxlength="40">
                     <span class="popup__item-error name-item-error"></span>
                     <input required type="text" class="popup__item popup__item_type_about" id="about-item" name="about" placeholder="О себе" minlength="2" maxlength="200">
@@ -90,9 +90,6 @@
     </li>
 </template>
 <!-- СКРИПТ -->
-    <script type="module" src="./scripts/data.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./pages/index.js"></script>
 </body>
 </html>

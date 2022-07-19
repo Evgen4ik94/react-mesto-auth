@@ -1,5 +1,5 @@
 @import url('../vendor/normalize.css'); /*Внешние стили*/
-@import url('../vendor/fonts/fonts.css'); /*Шрифты*/
+@import url('../fonts/fonts.css'); /*Шрифты*/
 /*СТИЛИ СТРАНИЦЫ*/
 @import url('../blocks/page/page.css'); /*Стили страницы*/
 @import url('../blocks/text/text.css');/*Стили общей информации профиля*/
