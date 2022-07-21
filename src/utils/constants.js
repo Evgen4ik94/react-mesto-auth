@@ -27,7 +27,7 @@ export const initialCards = [{
   
   // DOM элементы
   // контейнер для вставки карточек
-  export const gallery = document.querySelector('.gallery__list');//Кладем в переменную галерею
+  export const gallery = '.gallery__list';//Кладем в переменную галерею
 
 
   //Формы 
@@ -35,7 +35,7 @@ export const initialCards = [{
   export const formCreateCard = document.querySelector('.popup__form_type_create-card'); //Форма добавления карточки
   //Поля формы редактирования профиля
   export const nameInput = formProfile.elements.name;
-  export const jobInput = formProfile.elements.about;
+  export const aboutInput = formProfile.elements.about;
 
   //Попапы
   export const popupEdit = document.querySelector('.popup_edit_profile'); //Редактирование профиля

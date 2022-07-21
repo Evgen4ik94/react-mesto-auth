@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="page">
 <!-- ШАПКА -->
         <header class="header">
-            <img class="header__logo" src="./images/header-logo.svg" alt="Место">
+            <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Место">
         </header>
     <main class="content">
 <!-- ПРОФИЛЬ -->
     <section class="profile">
         <div class="profile__avatar">
-            <img class="profile__image" src="./images/avatar.jpg" alt="Фото профиля">
+            <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
         </div>
         <div class="profile__info">
             <div class="profile__name-box">
@@ -32,8 +31,6 @@
         <ul class="gallery__list">
         </ul>
     </section>
-
-
     </main>
 <!-- ПОДВАЛ -->
     <footer class="footer">
@@ -60,7 +57,7 @@
             <button class="popup__button-close" type="button"></button>
             <h3 class="popup__head">Новое место</h3>
             <form class="popup__form popup__form_type_create-card" action="#" method="POST" name="placeInfo">
-                <input type="text" name="title" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="2" maxlength="30" id="title-item">
+                <input type="text" name="name" placeholder="Название" class="popup__item popup__item_type_caption" required minlength="2" maxlength="30" id="title-item">
                 <span class="popup__item-error title-item-error"></span>
                 <input type="url" name="link" placeholder="Ссылка на изображение" class="popup__item popup__item_type_link" required id="link-item">
                 <span class="popup__item-error link-item-error"></span>
@@ -90,6 +87,6 @@
     </li>
 </template>
 <!-- СКРИПТ -->
-    <script type="module" src="./pages/index.js"></script>
+    <!-- <script src="./index.js"></script> -->
 </body>
 </html>

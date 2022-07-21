@@ -3,8 +3,8 @@ import Popup from './Popup.js'
 export default class PopupWithImage extends Popup { //Наследование от класса Popup
     constructor(popupSelector) {
         super(popupSelector);
-        this._image = this._popupElement.querySelector('.popup__image');
-        this._imageCaption = this._popupElement.querySelector('.popup__image-caption');
+        this._image = this._popup.querySelector('.popup__image');
+        this._imageCaption = this._popup.querySelector('.popup__image-caption');
     }
     open(name, link) { //Перезапишем родительский метод open
         this._image.src = link; 

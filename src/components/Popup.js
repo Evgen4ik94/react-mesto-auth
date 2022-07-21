@@ -1,24 +1,25 @@
 export default class Popup {
     constructor(popupSelector) {
-      this._popup = document.querySelector(popupSelector);    
+      this._popup = document.querySelector(popupSelector);   
+      this._setEventListeners(); 
       this._handleCloseByEsc = this._handleCloseByEsc.bind(this);
     }
     // закрыть popup клавишей Esc
-    _handleCloseByEsc(e) {
-      if (e.key === 'Escape') {
+    _handleCloseByEsc(evt) {
+      if (evt.key === 'Escape') {
         this.close();
       }
     }
     // закрыть popup кликом по фону
-    _closeOnOverlay(e) {
-      if(e.target === e.currentTarget) {
+    _closeOnOverlay(evt) {
+      if(evt.target === evt.currentTarget) {
         this.close();
       }
     }
     //Установка слушателей на закрытие по кнопке и по фону
     _setEventListeners() {
       this._popup.querySelector('.popup__button-close').addEventListener('click', () => this.close());
-      this._popup.addEventListener('click', (e) => this._closeOnOverlay(e));
+      this._popup.addEventListener('click', (evt) => this._closeOnOverlay(evt));
     }
   
     open() {

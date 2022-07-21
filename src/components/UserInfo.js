@@ -7,7 +7,7 @@ export default class UserInfo {
     getUserInfo() { //Передаем данные пользователя
       return {
         userName: this._userName.textContent,
-        userJob: this._userAbout.textContent
+        userAbout: this._userAbout.textContent
       };
     }
 
