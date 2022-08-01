@@ -1,7 +1,7 @@
 .popup__head {
     color: #000;
     flex: 1;
-    margin: 0 auto;
+    margin: 0;
     overflow: hidden;
     padding: 34px 64px 54px 36px;
     text-overflow: ellipsis;
@@ -16,4 +16,8 @@
         line-height: 25px;
         padding: 25px 22px 75px;
     }
+}
+.popup__head_type_delete {
+    padding: 0 0 38px;
+    align-content: left;
 }

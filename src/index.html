@@ -15,7 +15,9 @@
 <!-- ПРОФИЛЬ -->
     <section class="profile">
         <div class="profile__avatar">
-            <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
+            <button class="profile__avatar-button">
+                <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
+            </button>
         </div>
         <div class="profile__info">
             <div class="profile__name-box">
@@ -65,7 +67,7 @@
             </form>
         </div>
     </div>
-    <!-- POPUP FULLSCREEN-IMAGE-->
+    <!-- POPUP FULLSCREEN-IMAGE -->
     <div class="popup popup_type_fullscreen-image">
         <figure class="popup__image-container">
           <button class="popup__button-close button" type="button" aria-label="Закрыть"></button>
@@ -74,6 +76,28 @@
             Новое место
           </figcaption>
         </figure>
+      </div>
+    <!-- POPUP DELETE -->
+    <div class="popup popup_delete_card">
+        <div class="popup__container_delete">
+          <form class="popup__form popup__form_type_delete-card" action="#" method="POST" name="acceptDeleting">
+            <button class="popup__button-close button" type="button"></button>
+            <h3 class="popup__head popup__head_type_delete">Вы уверены?</h3>
+            <button class="button popup-delete__button popup__button-submit" type="submit">Да</button>
+          </form>
+        </div>
+    </div>
+    <!-- POPUP AVATAR -->
+    <div class="popup popup_avatar">
+        <div class="popup__container_avatar">
+          <button class="popup__button-close button" type="button"></button>
+          <h3 class="popup__head popup__head_type_new-avatar">Обновить аватар</h3>
+          <form novalidate class="popup__form popup__form_type_new-avatar" name="avatar" action="#" method="POST">
+            <input type="url" class="popup__item popup__item_type_link" name="link" placeholder="Ссылка на картинку" id="avatar-input" required>
+            <span class="popup__item-error link-item-error" id = "avatar-input-error"></span>
+            <button class="popup__button-submit popup__button-avatar popup__button-submit_disabled">Сохранить</button>
+          </form>
+        </div>
       </div>
 <!-- TEMPLATE -->
 <template id="gallery-template">

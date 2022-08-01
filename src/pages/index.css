@@ -40,7 +40,6 @@
 @import url('../blocks/popup/__button-close/popup__button-close.css');/*Стили кнопки "закрыть"*/
 @import url('../blocks/popup/__form/popup__form.css');/*Стили формы поп-апа*/
 @import url('../blocks/popup/__head/popup__head.css');/*Стили заголовка формы*/
-@import url('../blocks/popup/__block/popup__block.css');/*Стили поля формы*/
 @import url('../blocks/popup/__item/popup__item.css');/*Стили заполнения формы*/
 @import url('../blocks/popup/__button-submit/popup__button-submit.css');/*Стили кнопки "сохранить"*/
 @import url('../blocks/popup/_opened/popup_opened.css');/*Стили открытия поп-апа*/
@@ -48,6 +47,9 @@
 @import url('../blocks/popup/__image/popup__image.css'); /*Стили попапа картинки*/
 @import url('../blocks/popup/__image-caption/popup__image-caption.css'); /*Стили подписи картинки в попапе*/
 @import url('../blocks/popup/__button-submit/__button-submit_disabled/popup__button-submit_disabled.css'); /*Стиль неактивной кнопки*/
+@import url('../blocks/popup/__container/_delete/popup__container_delete.css');
+@import url('../blocks/popup/__container/_avatar/popup__container_avatar.css');
+@import url('../blocks/profile/__avatar-button/profile__avatar-button.css');
 
 /*ERRORS*/
 @import url('../blocks/popup/__item-error/popup__item-error.css'); /*Стили текста ошибки в попапе*/
