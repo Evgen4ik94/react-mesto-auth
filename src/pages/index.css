@@ -24,6 +24,8 @@
 @import url('../blocks/photo/__item/photo__item.css');/*Стили фото галереи*/
 @import url('../blocks/photo/__description/photo__description.css');/*Стили блока подписи фото*/
 @import url('../blocks/photo/__title/photo__title.css');/*Стили подписи фото*/
+@import url('../blocks/photo/__likebox/photo__likebox.css');
+@import url('../blocks/photo/__count/photo__count.css');
 @import url('../blocks/photo/__button-like/photo__button-like.css');/*Стили кнопки лайка*/
 @import url('../blocks/photo/__button-like/_active/photo__button-like_active.css');
 @import url('../blocks/photo/__button-delete/photo__button-delete.css');/*Стили кнопки удалить*/

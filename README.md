@@ -19,5 +19,8 @@
 * Форма редактирования информации.
 * Сборка с помощью webpack с использованием других модулей Node.js, например - babel.
 
-**Сылка на GH Pages**
+**Ссылка на GH Pages**
+* https://evgen4ik94.github.io/mesto/
+
+**Ссылка на сайт**
 * https://evgen4ik94.github.io/mesto/
