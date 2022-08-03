@@ -16,15 +16,15 @@
     <section class="profile">
         <div class="profile__avatar">
             <button class="profile__avatar-button">
-                <img class="profile__image" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
+                <img class="profile__image" id="avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля">
             </button>
         </div>
         <div class="profile__info">
             <div class="profile__name-box">
-                <h1 class="text profile__name">Евгений Миляков</h1>
+                <h1 class="text profile__name" id="name">Евгений Миляков</h1>
                 <button class="profile__button profile__button-edit" title="Редактировать" type="button"></button>
             </div>
-            <p class="text profile__prof">Инженер-конструктор</p>
+            <p class="text profile__prof" id="about">Инженер-конструктор</p>
         </div>
         <button class="profile__button profile__button-add" title="Добавить" type="button"></button>
     </section>
@@ -93,9 +93,9 @@
           <button class="popup__button-close button" type="button"></button>
           <h3 class="popup__head popup__head_type_new-avatar">Обновить аватар</h3>
           <form novalidate class="popup__form popup__form_type_new-avatar" name="avatar" action="#" method="POST">
-            <input type="url" class="popup__item popup__item_type_link" name="link" placeholder="Ссылка на картинку" id="avatar-input" required>
-            <span class="popup__item-error link-item-error" id = "avatar-input-error"></span>
-            <button class="popup__button-submit popup__button-avatar popup__button-submit_disabled">Сохранить</button>
+            <input type="url" class="popup__item popup__item_type_link" name="link" placeholder="Ссылка на картинку" id="avatar-item" required>
+            <span class="popup__item-error avatar-item-error"></span>
+            <button class="button popup__button-submit popup__button-avatar popup__button-submit_disabled">Сохранить</button>
           </form>
         </div>
       </div>

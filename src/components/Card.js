@@ -49,8 +49,8 @@ export default class Card {
     
     generateCard() {
     this._getTemplate(); // Метод создает разметку карточки
-    this._getCardElements();
-    this._setEventListeners();
+    this._getCardElements(); // Получаем элементы карточки, содержимое которых надо перезаписать
+    this._setEventListeners(); // Добавляем функционал карточки (удаление, лайк, открытие большого размера)
     this._image.src = this._link;
     this._caption.textContent = this._name;
     this._image.alt = this._name;

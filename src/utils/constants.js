@@ -1,29 +1,3 @@
-// Шесть карточек «из коробки»
-export const initialCards = [{
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-  ];
   
   // DOM элементы
   // контейнер для вставки карточек
@@ -33,6 +7,8 @@ export const initialCards = [{
   //Формы 
   export const formProfile =  document.querySelector('.popup__form_type_edit'); //Форма редактирования профиля
   export const formCreateCard = document.querySelector('.popup__form_type_create-card'); //Форма добавления карточки
+  export const avaInfo = document.querySelector('.popup__form_type_new-avatar'); //Сменить аватар
+
   //Поля формы редактирования профиля
   export const nameInput = formProfile.elements.name;
   export const aboutInput = formProfile.elements.about;
@@ -41,11 +17,10 @@ export const initialCards = [{
   export const popupEdit = document.querySelector('.popup_edit_profile'); //Редактирование профиля
   export const popupAdd = document.querySelector('.popup_add_photo'); //Добавление карточки
 
-
   // Кнопки  
   export const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
-  export const btnAdd = document.querySelector('.profile__button-add') //Кнопка "Добавить фото";
-
+  export const btnAdd = document.querySelector('.profile__button-add'); //Кнопка "Добавить фото";
+  export const btnAvatar = document.querySelector('.profile__avatar-button'); //Кнопка изменения аватара
   
   // Настройки валидации форм (2 параметра у FormValidator - объект с настройками и элемент формы)
   export const validationSettings = {
@@ -56,3 +31,6 @@ export const initialCards = [{
     inputErrorClass: 'popup__item-error',
     errorClass: 'popup__item-error_active'
   };
+
+  export const baseLink = 'https://mesto.nomoreparties.co/v1/cohort-47';
+  export const token = '76d23833-7ba9-4f79-9b2a-5a0913e0b1e5';
