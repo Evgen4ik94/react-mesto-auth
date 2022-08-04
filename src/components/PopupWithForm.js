@@ -22,12 +22,11 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
       this._submitButton.textContent = 'Сохранение...';
-      this.close();
     });
  }
 // открытие попапа с формой
   open() {
-    this._validationForm.errorClear(); //Удаление сообщений об ошибках валидации
+    this._validationForm.resetValidation(); //Удаление сообщений об ошибках валидации
     this._handleOpen();
     super.open();
  }

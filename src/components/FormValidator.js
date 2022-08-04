@@ -35,12 +35,12 @@ export default class FormValidator {
     }
   
     _enableSubmitButton() {
-      this._form.querySelector(this._submitButtonSelector).setAttribute('disabled', true)
-      this._form.querySelector(this._submitButtonSelector).classList.add(this._inactiveButtonClass);
+      this._button.setAttribute('disabled', true)
+      this._button.classList.add(this._inactiveButtonClass);
     }
     disableSubmitButton() {
-      this._form.querySelector(this._submitButtonSelector).removeAttribute('disabled', true);
-      this._form.querySelector(this._submitButtonSelector).classList.remove(this._inactiveButtonClass);
+      this._button.removeAttribute('disabled', true);
+      this._button.classList.remove(this._inactiveButtonClass);
     }
 
     _toggleButtonState() {
@@ -62,17 +62,14 @@ export default class FormValidator {
       });
     }
   
-    errorClear() {
+    resetValidation() {
       this._inputList.forEach((inputElement) => this._hideInputError(inputElement));
       this._toggleButtonState();
-      if (this._form.classList.contains('popup__form_type_create-card') || this._form.classList.contains('popup__form_type_new-avatar')) {
-        this._form.reset(); 
-      }
     }
   
     enableValidation() {
       this._setEventListeners();
-      this.errorClear();
+      this.resetValidation();
     }
   }
   

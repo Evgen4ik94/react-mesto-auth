@@ -13,7 +13,8 @@ import {
   avaInfo,
   formProfile,
   formCreateCard,
-  initialCards,
+  btnCreate,
+  btnSave,
   gallery,
   btnEdit,
   btnAdd,
@@ -25,7 +26,13 @@ import {
 import Api from '../components/Api.js';
 import './index.css'; // импорт главного файла стилей 
 
-const api = new Api(baseLink, token); // Передаем в экземпляр класса Api ссылку и токен
+const api = new Api({
+  baseLink: baseLink, 
+  headers: {
+    authorization: token,
+    "Content-Type": "application/json",
+  }
+}); // Передаем в экземпляр класса Api ссылку и токен
 
 // ВАЛИДАЦИЯ ФОРМ //
 const editFormValidation = new FormValidator(validationSettings, formProfile);
@@ -80,9 +87,10 @@ const popupProfile = new PopupWithForm(
     })
       .then(res => {
         userInfo.setUserInfo(res);
+        popupProfile.close();
       })
       .catch(err => console.log(err))
-      .finally(() => document.querySelector('.popup__button-save').textContent = 'Сохранить');
+      .finally(() => btnSave.textContent = 'Сохранить');
   },
   editFormValidation,
   () => {
@@ -102,7 +110,7 @@ const popupPlace = new PopupWithForm(
       popupPlace.close();
     })
     .catch(err => console.log(err))
-    .finally(() => document.querySelector('.popup__button-create').textContent = 'Создать');
+    .finally(() => btnCreate.textContent = 'Создать');
   },
   placeFormValidation
 )
@@ -131,6 +139,7 @@ const popupChangeAvatar = new PopupWithForm(
     api.changeAvatar(link) //Вызываем метод changeAvatar родительского класса Api
     .then(res => {
       userInfo.setUserAvatar(res.avatar);
+      popupChangeAvatar.close();
     })
     .catch(err => console.log(err)) //в случае отклонения запроса - возвращаем сообщение об ошибке
     .finally(() => document.querySelector('.popup__button-avatar').textContent = 'Сохранить'); //Возвращаем текст кнопки после загрузки аватара

@@ -1,11 +1,10 @@
 export default class Api {
-    constructor(baseLink, token) {
-      this._baseLink = baseLink;
-      this._token = token;
+    constructor(options) {
+      this._options = options;
     }
 
     _fetchInfo(url, properties) { 
-      return fetch(this._baseLink + url, properties)
+      return fetch(this._options.baseLink + url, properties)
         .then(res => {
           if(res.ok) {
             return res.json();
@@ -16,28 +15,21 @@ export default class Api {
 
     getUserInfo() {
       return this._fetchInfo('/users/me', {
-        headers: {
-          authorization: this._token
-        }
+        headers: this._options.headers
       });
     }
   
     updUserInfo(dataForm) {
       return this._fetchInfo('/users/me', {
         method: 'PATCH',
-        headers: {
-          authorization: this._token,
-          'Content-Type': 'application/json'
-        },
+        headers: this._options.headers,
         body: JSON.stringify(dataForm)
       });
     }
 
     getInitialCards() {
         return this._fetchInfo('/cards', {
-          headers: {
-            authorization: this._token
-          }
+          headers: this._options.headers
         });
       }
     
@@ -45,19 +37,14 @@ export default class Api {
     deleteCard(id) {
       return this._fetchInfo('/cards/' + id, {
        method: 'DELETE',
-        headers: {
-          authorization: this._token
-        }
+       headers: this._options.headers
       });
     }
 
     uploadCard(item) {
       return this._fetchInfo('/cards', {
         method: 'POST',
-        headers: {
-          authorization: this._token,
-          'Content-Type': 'application/json'
-        },
+        headers: this._options.headers,
         body: JSON.stringify(item)
       });
     }
@@ -71,19 +58,14 @@ export default class Api {
       }
       return this._fetchInfo('/cards/likes/' + id, {
         method: method,
-        headers: {
-          authorization: this._token
-        }
+        headers: this._options.headers
       });
     }
 
     changeAvatar(link) {    //Запрос на изменение аватара
       return this._fetchInfo('/users/me/avatar', { //передаем адрес в запрос
         method: 'PATCH',  //передаем метод
-        headers: {
-          authorization: this._token,  //передаем уникальный заголовок
-          'Content-Type': 'application/json'
-        },
+        headers: this._options.headers,
         body: JSON.stringify({ //в тело запроса кладем введенную юзером ссылку на аватар
           avatar: link  //в свойство avatar тела запроса кладем ссылку на аватар
         })

@@ -21,7 +21,9 @@
   export const btnEdit = document.querySelector('.profile__button-edit'); //Кнопка "Редактировать профиль" 
   export const btnAdd = document.querySelector('.profile__button-add'); //Кнопка "Добавить фото";
   export const btnAvatar = document.querySelector('.profile__avatar-button'); //Кнопка изменения аватара
-  
+  export const btnCreate = document.querySelector('.popup__button-create'); //Кнопка сабмита формы
+  export const btnSave = document.querySelector('.popup__button-save'); //Кнопка сабмита формы
+
   // Настройки валидации форм (2 параметра у FormValidator - объект с настройками и элемент формы)
   export const validationSettings = {
     formSelector: '.popup__form',
