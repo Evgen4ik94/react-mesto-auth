@@ -46,11 +46,29 @@ const userInfo = new UserInfo({
 
 const popupImage = new PopupWithImage('.popup_type_fullscreen-image');
 
+
+//Создание новой карточки
 const generateCard = data => new Card(
-  data, 
-  '#gallery-template', 
-  ({name, link}) => popupImage.open(name, link)
-  ).generateCard();
+  data,
+  userInfo.getUserId(),
+  '#gallery-template',
+  ({name, link}) => popupImage.open(name, link),
+  (id, deleteConfirm) => popupConfirmDelete.open(id, deleteConfirm),
+  (id, liked) => api.likeCard(id, liked)
+).generateCard();
+
+//Попап удаления карточки
+const popupConfirmDelete = new PopupWithDelete(
+  '.popup_delete_card',
+  (id, handleDelete) => {
+    api.deleteCard(id)
+      .then(() => {
+        handleDelete();
+        popupConfirmDelete.close();
+      })
+      .catch(err => console.log(err));
+  }
+);
 
 //Профиль пользователя, экземпляр класса popupWithForm
 const popupProfile = new PopupWithForm(
@@ -74,14 +92,13 @@ const popupProfile = new PopupWithForm(
   }
 )
 
-//Новая карточка
+//Попап добавления карточки
 const popupPlace = new PopupWithForm(
   '.popup_add_photo',
   item => { 
     api.uploadCard(item)
     .then(res => {
       cardList.prependItem(generateCard(res)); //!!!!!!!!!!
-      console.log(cardList);
       popupPlace.close();
     })
     .catch(err => console.log(err))
@@ -91,33 +108,20 @@ const popupPlace = new PopupWithForm(
 )
 
 //Загрузка карточек с сервера//
+let cardList; //Создаем переменную в глобальной области видимости, чтобы была доступна везде
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([{name, about, avatar, _id}, initialCards]) => {
     userInfo.setUserInfo({name, about});
     userInfo.setUserAvatar(avatar);
     userInfo.setUserId(_id);
-    const cardList = new Section({
+    cardList = new Section({
       items: initialCards,
       renderer: item => cardList.appendItem(generateCard(item))
     }, gallery);
     cardList.renderedItems();
   })
     .catch(err => console.log(err));
-
-
-//Попап удаления //
-const popupConfirmDelete = new PopupWithDelete(
-  '.popup_delete_card',
-  (id, delCard) => {
-    api.deleteCard(id)
-      .then(() => {
-        delCard();
-        popupConfirmDelete.close();
-      })
-      .catch(err => console.log(err));
-  }
-);
 
 
 // Попап изменения аватара

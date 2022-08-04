@@ -11,13 +11,13 @@ export default class PopupWithDelete extends Popup {
     this._form = this._popup.querySelector('.popup__form');
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
-      this._handleDelete(this._id, this._delConfirm);
+      this._handleDelete(this._id, this._deleteConfirm);
     });
   }
 
-  open(id, delConfirm) {
+  open(id, deleteConfirm) {
     this._id = id;
-    this._delConfirm = delConfirm;
+    this._deleteConfirm = deleteConfirm;
     super.open();
   }
 }
