@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
       />
       <Footer />
-      <PopupWithImage card={selectedCard} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <PopupWithForm
         name="form"
         title="Редактировать профиль"
