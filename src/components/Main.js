@@ -7,7 +7,7 @@ function Main(props) {
   const [userDescription, setUserDescription] = useState(
     "Инженер-конструктор"
   );
-  const [userAvatar, setUserAvatar] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
   useEffect(() => {
