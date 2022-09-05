@@ -1,26 +1,48 @@
-# Проект: Место
+# Проектная работа №10 "Mesto (React)".
 
-### Обзор
 
-* Figma
-* Картинки
+## Описание:
 
-**Figma**
+"Mesto" - это интерактивная страница для размещения фотографий пользователями. Проект разработан в рамках прохождения 4-10 спринтов курса. Данная проектная работа в 10-м спринте переведена на фреймворк React. Ссылка на репозиторий (https://github.com/Evgen4ik94/mesto-react)
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+## Функционал:
 
-**Описание**
-* Одностраничный проект для размещения фотографий. Редактируемый профиль и аватар.
-**Технологии**
-* Cемантическая верстка, медиа-запросы.
-* Структура по BEM Nested.
-* Построение сеток с использованием flex и grid.
-* Всплывающее окно.
-* Форма редактирования информации.
-* Сборка с помощью webpack с использованием других модулей Node.js, например - babel.
+* Добавление и удаление фотографий
+* Возможность ставить "Лайк" фотографии
+* Редактирование инфформации профиля пользователя
+* Данные хранятся на сервере и загружаются с сервера
+* Валидация форм на стороне клиента
 
-**Ссылка на GH Pages**
-* https://evgen4ik94.github.io/mesto/
+## Технологии:
 
-**Ссылка на сайт**
-* https://evgen4ik94.github.io/mesto/
+* Flexbox
+* Grid Layout
+* Positioning Elements
+* Animation and Transform using CSS
+* BEM Methodology
+* File Structure and File Paths (Nested BEM)
+* Git
+* JavaScript (Asynchronous JS, OOP, Fetch API)
+* Webpack
+* React JS
+* Functional Components
+* Client-side form validation (custom hook)
+
+
+Запуск приложения в режиме разработки:
+
+```
+npm install
+npm start
+```
+
+## Языки:
+
+* HTML, CSS
+* JavaScript
+
+## Библиотеки:
+
+* Reactjs
+
+

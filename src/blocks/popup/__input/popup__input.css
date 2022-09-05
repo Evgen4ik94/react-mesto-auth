@@ -1,4 +1,4 @@
-.popup__item {
+.popup__input {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     padding: 0 0 13px;
@@ -10,14 +10,14 @@
     margin: 0 0 30px;
     box-sizing: border-box;
 }
-.popup__item:last-of-type {
+.popup__input:last-of-type {
     margin: 0 0 45px;
 }
-.popup__item:focus {
+.popup__input:focus {
     outline: none;
     cursor: text;
 }
-.popup__item:valid {
+.popup__input:valid {
     border-bottom: 1px solid green;
 }
 
