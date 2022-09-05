@@ -13,7 +13,7 @@ function Card(props) {
   return (
     <>
       <li className="photo">
-        <button className="photo__button-delete" type="button"></button>
+        <button className="photo__button-delete" type="button" />
         <img
           className="photo__item"
           onClick={handleClick}
@@ -24,10 +24,10 @@ function Card(props) {
           <h2 className="photo__title">{props.card.name}</h2>
           <div className="photo__likebox">
             <button
-              className={`photo__button-like ${liked && "card__like_active"}`}
+              className={`photo__button-like ${liked && "photo__button-like_active"}`}
               onClick={likeClick}
               type="button"
-            ></button>
+            />
             <div className="photo__count">{props.likeCounter}</div>
           </div>
         </div>
