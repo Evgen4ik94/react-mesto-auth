@@ -1,19 +1,40 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const [liked, setLiked] = React.useState(false);
+  const currentUser = React.useContext(CurrentUserContext);
+  
+  // Определяем, являемся ли мы владельцем текущей карточки
+  const isOwn = props.card.owner._id === currentUser._id;
+  // Создаём переменную, которую после зададим в `className` для кнопки удаления
+  const cardDeleteButtonClassName = (`photo__button-delete ${isOwn} ? photo__button-delete_active : ""`)
+  
+  // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+  // Создаём переменную, которую после зададим в `className` для кнопки лайка
+  const cardLikeButtonClassName = (`photo__button-like ${isLiked ? 'photo__button-like_active' : ""}`)
 
   function handleClick() {
     props.onCardClick(props.card);
   }
 
   function likeClick() {
-    setLiked(!liked);
+    isLiked = !isLiked;
+    props.onCardLike(props.card);
   }
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <>
       <li className="photo">
-        <button className="photo__button-delete" type="button" />
+        <button 
+        className={cardDeleteButtonClassName} 
+        onCardDelete={handleDeleteClick}
+        type="button" 
+        />
         <img
           className="photo__item"
           onClick={handleClick}
@@ -24,7 +45,7 @@ function Card(props) {
           <h2 className="photo__title">{props.card.name}</h2>
           <div className="photo__likebox">
             <button
-              className={`photo__button-like ${liked && "photo__button-like_active"}`}
+              className={cardLikeButtonClassName}
               onClick={likeClick}
               type="button"
             />

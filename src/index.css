@@ -29,6 +29,7 @@
 @import url("./blocks/photo/__button-like/photo__button-like.css");/*Стили кнопки лайка*/
 @import url("./blocks/photo/__button-like/_active/photo__button-like_active.css");
 @import url("./blocks/photo/__button-delete/photo__button-delete.css");/*Стили кнопки удалить*/
+@import url("./blocks/photo/__button-delete/__button-delete_active/photo__button-delete_active.css"); /*Стиль активной кнопки удаления*/
 
 /*ПОДВАЛ*/
 @import url("./blocks/footer/footer.css");/*Стили подвала*/

@@ -13,6 +13,7 @@
     top: 20px;
     right: 20px;
     padding: 0;
+    display: none;
 }
 
 .photo__button-delete:hover {
