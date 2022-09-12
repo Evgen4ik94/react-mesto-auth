@@ -1,21 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Card from "./Card";
-import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const currentUser = React.useContext(CurrentUserContext);
-  const [cards, setCards] = React.useState([]);
-  useEffect(() => {
-    api.getInitialCards()
-      .then((result) => {
-        const cardList = result;
-        setCards(cardList);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext); //Подписка на контекст
   
-
   return (
     <>
       <section className="profile">
@@ -47,7 +36,7 @@ function Main(props) {
       </section>
       <section className="gallery">
         <ul className="gallery__list">
-          {cards.map((card) => (
+          {props.cards.map((card) => (
             <Card
               key={card._id}
               card={card}

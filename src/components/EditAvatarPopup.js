@@ -35,6 +35,7 @@ function EditAvatarPopup(props) {
           onClose={handleClosePopup}
         >
             <input
+              ref={avaRef}
               className="popup__input popup__input_type_link"
               id="avatar-item"
               type="url"

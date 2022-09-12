@@ -7,7 +7,7 @@ function Card(props) {
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = props.card.owner._id === currentUser._id;
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
-  const cardDeleteButtonClassName = (`photo__button-delete ${isOwn} ? photo__button-delete_active : ""`)
+  const cardDeleteButtonClassName = (`photo__button-delete ${isOwn ? 'photo__button-delete_active' : ""}`)
   
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = props.card.likes.some(i => i._id === currentUser._id);
@@ -18,8 +18,7 @@ function Card(props) {
     props.onCardClick(props.card);
   }
 
-  function likeClick() {
-    isLiked = !isLiked;
+  function handleLikeClick () {
     props.onCardLike(props.card);
   }
 
@@ -32,7 +31,7 @@ function Card(props) {
       <li className="photo">
         <button 
         className={cardDeleteButtonClassName} 
-        onCardDelete={handleDeleteClick}
+        onClick={handleDeleteClick}
         type="button" 
         />
         <img
@@ -46,7 +45,7 @@ function Card(props) {
           <div className="photo__likebox">
             <button
               className={cardLikeButtonClassName}
-              onClick={likeClick}
+              onClick={handleLikeClick }
               type="button"
             />
             <div className="photo__count">{props.likeCounter}</div>
