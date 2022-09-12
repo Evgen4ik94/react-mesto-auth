@@ -3,8 +3,8 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -47,24 +47,26 @@ function App() {
 
   function handleImagePopupOpen(card) { //Открытие попапа карточки по клику (меняем состояние на true)
     setSelectedCard(card);
-    setImagePopupOpen(!setImagePopupOpen);
+    setImagePopupOpen(!isImagePopupOpen);
   }
   // Закрываем попапы (изменяем открытое состояние с true на false) и очищаем поля
   function closeAllPopups() {
     setEditProfilePopupOpenClose(false);
     setAddCardPopupOpenClose(false);
     setEditAvatarPopupOpenClose(false);
+    setImagePopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
   //Добавим функцию лайка
   function handleLikeClick (card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
     
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
     .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
+        // Формируем новый массив на основе имеющегося c новой карточкой
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
       .catch((err) => console.log(err));
