@@ -55,13 +55,22 @@ class Api {
       return this._responseResult(res);
     });
   }
-  setLike(id) {
+  changeLikeCardStatus(card, isLiked) {
+    if (isLiked) {
+      return this.addLike(card);
+    } else {
+      return this.deleteLike(card);
+    }
+  }
+
+  addLike(id) {
     return fetch(`${this._url}/cards/likes/${id}`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then((res) => {
-      return this._responseResult(res);
-    });
+        method: "PUT",
+        headers: this._headers
+      })
+      .then((res) => {
+        return this._responseResult(res);
+      })
   }
 
   deleteLike(id) {

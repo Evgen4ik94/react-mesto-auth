@@ -84,7 +84,7 @@ function App() {
 
   function handleUpdateUser(data) { //Добавляем обработчик (п. 3)
     return api
-              .setUserInfo(data)
+              .updateUserData(data)
               .then((res) => {setCurrentUser(res);})
               .catch((err) => console.log(err));
   }
