@@ -109,10 +109,10 @@ function App() {
   function handleUpdateAvatar(data) {
     return api
               .updateAvatar(data)
-              .catch((err) => console.log(err))
               .then((res) => {
                 setCurrentUser(res);
-              });
+              })
+              .catch((err) => console.log(err))
   }
 
   function handleAddPlaceSubmit(card) {
@@ -125,7 +125,6 @@ function App() {
   }
 
   return (
-    <>
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
         <Main
@@ -156,7 +155,6 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
         /> 
       </CurrentUserContext.Provider>
-    </>
   );
 }
 
