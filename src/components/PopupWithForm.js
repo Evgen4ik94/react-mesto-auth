@@ -17,7 +17,7 @@ function PopupWithForm(props) {
           </button>
           <h2 className="popup__head">{props.title}</h2>
             {props.children}
-          <button className="popup__button-submit" type="submit" disabled>
+          <button className="popup__button-submit" type="submit">
             {props.submitText}
           </button>
         </form>

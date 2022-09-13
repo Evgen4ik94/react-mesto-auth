@@ -93,7 +93,7 @@ function App() {
 
   function handleUpdateAvatar(data) {
     return api
-              .setUserAvatar(data)
+              .updateAvatar(data)
               .catch((err) => console.log(err))
               .then((res) => {
                 setCurrentUser(res);

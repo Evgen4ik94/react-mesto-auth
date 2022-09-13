@@ -19,14 +19,14 @@ function AddPlacePopup(props) {
         setTimeout(() => { //Очищаем инпуты
             setName("");
             setLink("");
-        }, 200);
+        }, 20);
     }
     function handleSubmit(e) {
         e.preventDefault();
         setButtonText("Создание...");
         props
             .onAddPlace({name, link})
-            .then(() => handleClosePopup)
+            .then(() => handleClosePopup())
             .finally(() => {
                 setButtonText("Создать");
             })

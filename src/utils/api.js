@@ -63,8 +63,8 @@ class Api {
     }
   }
 
-  addLike(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+  addLike(data) {
+    return fetch(`${this._url}/cards/likes/${data}`, {
         method: "PUT",
         headers: this._headers
       })
@@ -73,8 +73,8 @@ class Api {
       })
   }
 
-  deleteLike(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+  deleteLike(data) {
+    return fetch(`${this._url}/cards/likes/${data}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
