@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Switch, Redirect, history } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -11,14 +12,18 @@ import AddPlacePopup from "./AddPlacePopup";
  
 
 function App() {
+
+  // СТЕЙТЫ
+  // Стейты, отвечающие за видимость попапов
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpenClose] = React.useState(false); //Стейт попапа ред. профиля
   const [isAddCardPopupOpen, setAddCardPopupOpenClose] = React.useState(false); //Стейт попапа добавления карточки
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpenClose] = React.useState(false); //Стейт попапа изменения аватара
-  const [selectedCard, setSelectedCard] = React.useState({
+
+  const [selectedCard, setSelectedCard] = React.useState({ // Стейт, отвечающий за открытие нужной карточки
     name: "",
     link: "",
   });
-  const [currentUser, setCurrentUser] = React.useState({}); //Стейт-значение для провайдера контекста
+  const [currentUser, setCurrentUser] = React.useState({}); //Стейт для провайдера контекста
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false); //Стейт попапа карточки
   const [cards, setCards] = React.useState([]);
   const [userInfoGet, setUserInfoGet] = React.useState(false); //Стейт получена/не получена информация о пользователе
@@ -127,16 +132,31 @@ function App() {
   return (
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
-        <Main
-          loader={userInfoGet}
-          onCardClick={handleImagePopupOpen}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardLike={handleLikeClick}
-          onCardDelete={handleDeleteClick}
-          cards={cards}
-        />
+          <Switch>
+            <ProtectedRoute  /* Защищаем контент главной страницы от неавторизованных пользователей */
+              component={Main}
+              loggedIn={LoggedIn} 
+              exact path="/"
+              onCardClick={handleImagePopupOpen}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardLike={handleLikeClick}
+              onCardDelete={handleDeleteClick}
+              cards={cards}
+            />
+            <Route path="/sign-up">
+              <Register onRegister={handleRegister} />
+            </Route>
+
+            <Route path="/sign-in">
+              <Login onLogin={handleAuthorization} />
+            </Route>
+
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
         <Footer />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
         <EditProfilePopup 
