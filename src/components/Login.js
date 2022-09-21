@@ -3,7 +3,7 @@ import '../styles/sign.css';
 import AuthForm from './AuthForm';
 
 function Login ({onLogin}) {
-    // Стейты полей в форме регистрации/авторизации
+    // Стейты полей в форме авторизации
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
