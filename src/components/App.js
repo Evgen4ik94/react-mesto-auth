@@ -1,6 +1,5 @@
 import React from "react";
-// eslint-disable-next-line
-import { Route, Switch, Redirect, history } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
