@@ -1,0 +1,13 @@
+.header__profile {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 400px) {
+    .header__profile {
+        flex-wrap: wrap;
+        justify-content: end;
+        margin-bottom: 10px;
+    }
+}

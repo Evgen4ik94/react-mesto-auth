@@ -1,7 +1,16 @@
-import React from "react";
-import { createRoot } from 'react-dom/client'
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import "./styles/index.css";
 import App from "./components/App";
+import { BrowserRouter } from 'react-router-dom';
 
-createRoot(document.getElementById("page")).render(<React.StrictMode><App /></React.StrictMode>);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('page')
+);
 

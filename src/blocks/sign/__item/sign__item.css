@@ -1,0 +1,26 @@
+.sign__item {
+    border-bottom: 2px solid #cccccc;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: inherit;
+    color: #fff;
+    outline: none;
+    line-height: 17px;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 30px;
+    padding: 0 0 10px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+}
+
+.sign__item::placeholder {
+    color: #cccccc;
+}
+
+/* Убираем браузерный стиль автозаполнения */
+.sign__item:-webkit-autofill,
+.sign__item:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    transition: background-color 5000s ease-in-out 0s;
+}
