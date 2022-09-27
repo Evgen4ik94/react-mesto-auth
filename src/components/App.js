@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch} from 'react-router-dom';
+import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -16,8 +16,6 @@ import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import * as ApiAuth from '../utils/ApiAuth';
 import NotFound from './NotFound';
-import { useHistory } from 'react-router-dom';
-
 
 
 function App() {
@@ -175,14 +173,15 @@ function App() {
   }
 
   // === Функция регистрации === //
-  function handleRegister(email, password) {
+  function handleRegistration(email, password) {
+    console.log('Успешно!');
     ApiAuth.register(email, password)
       .then((res) => {
         if (res) {
           setLoggedIn(true);
           setIsRegistrationSuccess(true);
           setIsInfoTooltipOpen(true);
-           history.push('/sign-in');
+          history.push('/sign-in');
         }
       })
       .catch((err) => {
@@ -257,7 +256,7 @@ function App() {
             />
 
             <Route path="/sign-up">
-              <Register onRegister={handleRegister} /> 
+              <Register onRegister={handleRegistration} /> 
             </Route>
 
             <Route path="/sign-in">
@@ -266,6 +265,10 @@ function App() {
 
             <Route path="*">
               <NotFound />
+            </Route>
+
+            <Route>
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-up"/>}
             </Route>
           </Switch>
         <Footer />

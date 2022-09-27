@@ -4,10 +4,10 @@ import successImg from "../images/OK.svg";
 import rejectImg from "../images/REJECT.svg";
 
 // Попап-компонент для отображения успешной/не успешной регистрации 
-function InfoTooltip({isOpen, onClose, popupName, isSuccess}) {
+function InfoTooltip({ namePopup, isOpen, onClose, isSuccess }) {
     return (
         <Popup 
-            popupName={popupName}
+            popupName={namePopup}
             isOpen={isOpen}
             onClose={onClose}
         >

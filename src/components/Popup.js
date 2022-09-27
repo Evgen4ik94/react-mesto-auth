@@ -38,7 +38,7 @@ function Popup({ isOpen, onClose, popupName, children, isImagePopup}) {
                 {/*Размещаем здесь контент попапа*/}
                 {children}
                 {/*Размещаем кнопку-крестик закрытия (она есть у любого попапа)*/}
-                <button className="button-close" type="button" onClick={onClose} />
+                <button className="popup__button-close" type="button" onClick={onClose} />
             </div>
         </section>
     );

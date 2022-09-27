@@ -2,12 +2,12 @@ import React from "react";
 import "../styles/sign.css";
 
 // Компонент формы для регистрации и авторизации
-function AuthForm({section, title, submit, submitText, emailValue, passwordValue, onChange}) {
+function AuthForm({ section, title, submit, emailValue, passwordValue, onChange, submitText }) {
     return (
         <section className={section}>
             <div className="sign">
                 <h2 className="sign__welcome">{title}</h2>
-                <div className="sign__form" onSubmit={submit}>
+                <form className="sign__form" onSubmit={submit}>
                     <input
                         className="sign__item"
                         id="email"
@@ -30,10 +30,10 @@ function AuthForm({section, title, submit, submitText, emailValue, passwordValue
                         minLength="5"
                         required
                     />
-                    <button className="sign__button" type="button">
+                    <button className="sign__button" type="submit">
                         {submitText}
                     </button>
-                </div>
+                </form>
             </div>
         </section>
     );
