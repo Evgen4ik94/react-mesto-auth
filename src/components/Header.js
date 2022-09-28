@@ -20,7 +20,7 @@ function Header({ userEmail, onLogOut }) { //Создаем компонент H
 
       <Route exact path={'/'}>
         <div className="header__profile">
-          <p className="header__email"></p>
+          <p className="header__email">{userEmail}</p>
           <Link to="/sign-in" className="header__sign-out" onClick={onLogOut}>
             Выйти
           </Link>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
@@ -22,37 +22,31 @@ function App() {
 
   // СТЕЙТЫ
   // Стейты, отвечающие за видимость попапов
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpenClose] = React.useState(false); //Стейт попапа ред. профиля
-  const [isAddCardPopupOpen, setAddCardPopupOpenClose] = React.useState(false); //Стейт попапа добавления карточки
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpenClose] = React.useState(false); //Стейт попапа изменения аватара
-  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false); //Стейт попапа удаления карточки
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpenClose] = useState(false); //Стейт попапа ред. профиля
+  const [isAddCardPopupOpen, setIsAddCardPopupOpenClose] = useState(false); //Стейт попапа добавления карточки
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpenClose] = useState(false); //Стейт попапа изменения аватара
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false); //Стейт попапа удаления карточки
 
-  const [selectedCard, setSelectedCard] = React.useState({ // Стейт, отвечающий за открытие нужной карточки
+  const [selectedCard, setSelectedCard] = useState({ // Стейт, отвечающий за открытие нужной карточки
     name: "",
     link: "",
   });
 
-  const [currentUser, setCurrentUser] = React.useState({}); //Стейт данных текущего пользователя
-  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false); //Стейт попапа карточки
-  const [cards, setCards] = React.useState([]); // Стейт, отвечающий за состояние cards
-  const [toDeleteCard, setToDeleteCard] = React.useState({}); // Стейт, отвечающий за подготовку к удалении карточки
+  const [currentUser, setCurrentUser] = useState({}); //Стейт данных текущего пользователя
+  const [isImagePopupOpen, setImagePopupOpen] = useState(false); //Стейт попапа карточки
+  const [cards, setCards] = useState([]); // Стейт, отвечающий за состояние cards
+  const [toDeleteCard, setToDeleteCard] = useState({}); // Стейт, отвечающий за подготовку к удалении карточки
 
-  // Стейты прелоудеров загрузки
-  const [isLoadingAddPopup, setIsLoadingAddPopup] = React.useState(false);
-  const [isLoadingEditPopup, setIsLoadingEditPopup] = React.useState(false);
-  const [isLoadingAvatarPopup, setIsLoadingAvatarPopup] = React.useState(false);
-  const [isLoadingDeletePopup, setIsLoadingDeletePopup] = React.useState(false);
-
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isRegistrationSuccess, setIsRegistrationSuccess] = React.useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
-  const [userEmail, setUserEmail] = React.useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   //===========//
 
   //=== API ЗАПРОСЫ ===//
   //Эффект, отвечающий за запрос на отображение карточек и информации пользователя
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserData(), api.getInitialCards()])
       .then(([userInfo, cardList]) => {
         setCurrentUser(userInfo);
@@ -62,23 +56,23 @@ function App() {
   }, []);
 
   // Эффект проверяющий токен при загрузки страницы, чтобы не обрывало сессию при перезагрузке страницы
-  React.useEffect(() => {
-    tokenCheck();
+  useEffect(() => {
+    checkToken();
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
 
   // ===== Функции-обработчики для открытия попапов
   function handleEditProfileClick() { //Открытие попапа ред. профиля по клику (меняем состояние на true)
-    setIsEditProfilePopupOpenClose(!isEditProfilePopupOpen);
+    setIsEditProfilePopupOpenClose(true);
   }
 
   function handleAddPlaceClick() { //Открытие попапа добавления карточки по клику (меняем состояние на true)
-    setAddCardPopupOpenClose(!isAddCardPopupOpen);
+    setIsAddCardPopupOpenClose(true);
   }
 
   function handleEditAvatarClick() { //Открытие попапа ред. аватара по клику (меняем состояние на true)
-    setEditAvatarPopupOpenClose(!isEditAvatarPopupOpen);
+    setEditAvatarPopupOpenClose(true);
   }
 
   function handleCardDeleteClick(toDeleteCard) { //Открытие попапа удаления карточки
@@ -97,7 +91,7 @@ function App() {
   // Закрываем попапы (изменяем открытое состояние с true на false) и очищаем поля
   function closeAllPopups() {
     setIsEditProfilePopupOpenClose(false);
-    setAddCardPopupOpenClose(false);
+    setIsAddCardPopupOpenClose(false);
     setEditAvatarPopupOpenClose(false);
     setIsDeleteCardPopupOpen(false);
     setImagePopupOpen(false);
@@ -121,7 +115,6 @@ function App() {
   
 
   function handleDeleteClick(card) {
-    setIsLoadingDeletePopup(true);
     api
       .deleteCard(toDeleteCard._id)
       .then(() => {
@@ -130,34 +123,23 @@ function App() {
         setCards(newCards);
         closeAllPopups();
       })
-      .catch((err) => alert('Ошибка при удалении карточки', err))
-      .finally(() => {
-        setIsLoadingDeletePopup(false);
-      });
+      .catch((err) => alert('Ошибка при удалении карточки', err));
   }
 
   function handleUpdateUser(data) { //Добавляем обработчик (п. 3)
-    setIsLoadingEditPopup(true);
     return api
               .updateUserData(data)
               .then((res) => {setCurrentUser(res);})
-              .catch((err) => alert('Ошибка при загрузке данных пользователя', err))
-              .finally(() => {
-                setIsLoadingEditPopup(false);
-              });
+              .catch((err) => alert('Ошибка при загрузке данных пользователя', err));
   }
 
   function handleUpdateAvatar(data) {
-    setIsLoadingAvatarPopup(true);
     return api
               .updateAvatar(data)
               .then((res) => {
                 setCurrentUser(res);
               })
-              .catch((err) => alert('Ошибка при обновлении аватара', err))
-              .finally(() => {
-                setIsLoadingAvatarPopup(false);
-              });
+              .catch((err) => alert('Ошибка при обновлении аватара', err));
   }
 
   function handleAddPlaceSubmit(card) {
@@ -166,10 +148,7 @@ function App() {
               .then((newCard) => {
                 setCards([newCard, ...cards]);
               })
-              .catch((err) => alert('Ошибка при добавлении карточки', err))
-              .finally(() => {
-                setIsLoadingAddPopup(false);
-              });
+              .catch((err) => alert('Ошибка при добавлении карточки', err));
   }
 
   // === Функция регистрации === //
@@ -178,7 +157,6 @@ function App() {
       .then((res) => {
         if (res) {
           console.log('Регистрация прошла успешно!');
-          setLoggedIn(true);
           setIsRegistrationSuccess(true);
           setIsInfoTooltipOpen(true);
           history.push('/sign-in');
@@ -211,7 +189,7 @@ function App() {
   }
 
   // === Функция проверки токена === //
-  function tokenCheck() {
+  function checkToken() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       ApiAuth.checkToken(jwt)
@@ -277,25 +255,21 @@ function App() {
           isOpen={isEditProfilePopupOpen} 
           onClose={closeAllPopups} 
           onUpdateUser={handleUpdateUser} //Добавляем пропс с обработчиком
-          isLoading={isLoadingEditPopup} //Загрузка попапа
         />
         <AddPlacePopup 
           isOpen={isAddCardPopupOpen} 
           onClose={closeAllPopups} 
           onAddPlace={handleAddPlaceSubmit}
-          isLoading={isLoadingAddPopup} //Загрузка попапа
         />
         <DeleteCardPopup // Попап подтверждения удаления карточки
         isOpen={isDeleteCardPopupOpen}
         onClose={closeAllPopups}
         onDeleteCard={handleCardDeleteClick}
-        isLoading={isLoadingDeletePopup}
       />
         <EditAvatarPopup 
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
-          isLoading={isLoadingAvatarPopup} //Загрузка попапа
         /> 
         <InfoTooltip /* Попап уведомление о статусе регистрации (успешно/неуспешно) */
         namePopup="infoTooltip"
