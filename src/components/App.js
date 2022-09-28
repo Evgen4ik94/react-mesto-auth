@@ -35,7 +35,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({}); //Стейт данных текущего пользователя
   const [isImagePopupOpen, setImagePopupOpen] = useState(false); //Стейт попапа карточки
   const [cards, setCards] = useState([]); // Стейт, отвечающий за состояние cards
-  const [toDeleteCard, setToDeleteCard] = useState({}); // Стейт, отвечающий за подготовку к удалении карточки
+  const [toDeleteCard, setToDeleteCard] = useState(''); // Стейт, отвечающий за подготовку к удалении карточки
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
@@ -75,16 +75,16 @@ function App() {
     setEditAvatarPopupOpenClose(true);
   }
 
-  function handleCardDeleteClick(toDeleteCard) { //Открытие попапа удаления карточки
+  function handleCardDeleteClick(cardId) { //Открытие попапа удаления карточки
     // Отмечаем id карточки
-    setToDeleteCard(toDeleteCard);
+    setToDeleteCard(cardId);
     // Передаем открытие попапа
     setIsDeleteCardPopupOpen(true);
   }
 
   function handleImagePopupOpen(card) { //Открытие попапа карточки по клику (меняем состояние на true)
     setSelectedCard(card);
-    setImagePopupOpen(!isImagePopupOpen);
+    setImagePopupOpen(true);
   }
 
   // ===== Функция-обработчик для закрытия всех попапов ===== //
@@ -114,16 +114,15 @@ function App() {
   } 
   
 
-  function handleDeleteClick(card) {
-    api
-      .deleteCard(toDeleteCard._id)
-      .then(() => {
-        const newCards = cards.filter((c) => // с помощью метода filter: создаем копию массива, исключив из него удалённую карточку
-          c._id !== toDeleteCard._id);
-        setCards(newCards);
-        closeAllPopups();
-      })
-      .catch((err) => alert('Ошибка при удалении карточки', err));
+  function handleDeleteClick(cardId) {
+    return api
+              .deleteCard(cardId)
+              .then(() => {
+                // с помощью метода filter: создаем копию массива, исключив из него удалённую карточку
+                setCards((cards) => cards.filter((card) => card._id !== cardId));
+                closeAllPopups();
+              })
+              .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
   }
 
   function handleUpdateUser(data) { //Добавляем обработчик (п. 3)
@@ -229,7 +228,7 @@ function App() {
               onAddPlace={handleAddPlaceClick}
               onEditAvatar={handleEditAvatarClick}
               onCardLike={handleLikeClick}
-              onCardDelete={handleDeleteClick}
+              onCardDelete={handleCardDeleteClick}
               cards={cards}
             />
 
@@ -264,7 +263,8 @@ function App() {
         <DeleteCardPopup // Попап подтверждения удаления карточки
         isOpen={isDeleteCardPopupOpen}
         onClose={closeAllPopups}
-        onDeleteCard={handleCardDeleteClick}
+        onSubmit={handleDeleteClick}
+        card={toDeleteCard}
       />
         <EditAvatarPopup 
           isOpen={isEditAvatarPopupOpen}

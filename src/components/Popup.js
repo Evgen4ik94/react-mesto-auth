@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 //Создание универсального компонента для отображения любого попапа
-function Popup({ isOpen, onClose, popupName, children, isImagePopup}) {
+function Popup({ isOpen, popupName, onClose, children, isImagePopup}) {
     //Используем `useEffect` для обработчика закрытия попапа на Esc
-    React.useEffect( () => {
+    useEffect( () => {
         if (!isOpen) return; //Если попап не! открыт, то обработчик не навешиваем
 
         // объявляем функцию, чтобы не терялась ссылка при рендере компонента
@@ -20,7 +20,9 @@ function Popup({ isOpen, onClose, popupName, children, isImagePopup}) {
 
     //Создаем обработчик на закрытие по оверлею
     const handleCloseByOverlay = (e) => {
-        onClose();
+        if (e.target === e.currentTarget) {
+      onClose();
+    }
     };
 
     //Рендерим верстку любого объекта с классом popup и классом popup-opened при открытии. 

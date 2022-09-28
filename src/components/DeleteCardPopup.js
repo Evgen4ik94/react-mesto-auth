@@ -1,24 +1,27 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function DeleteCardPopup({isOpen, onClose, isLoading, onDeleteCard}) {
+function DeleteCardPopup({isOpen, onClose, card, onSubmit }) {
+    const [buttonText, setButtonText] = React.useState("Да");
     //Подтверждение удаления
     function handleSubmit(e) {
         e.preventDefault();
-        onDeleteCard();
+        setButtonText("Удаление...");
+        onSubmit(card)
+            .then(() => {
+                setButtonText("Да");
+            })
     }
 
     return(
         <PopupWithForm      // Компонент формы - запрос на удаление карточки
-            popupName="delete"
+            name="delete"
             title="Вы уверены?"
             formName="delete-card"
             isOpen={isOpen}
             onClose={onClose}
-            buttonText="Да"
-            isLoading={isLoading}
+            submitText={buttonText}
             onSubmit={handleSubmit}
-            loadingBtnText="Удаление..."
         />
     );
 }
