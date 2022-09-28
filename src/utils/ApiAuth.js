@@ -19,14 +19,14 @@ const request = ({ url, method = 'POST', token, body }) => {
 
 export const register = (email, password) => {
   return request({
-    url: 'sign-up',
+    url: 'signup',
     body: { email, password },
   });
 };
 
 export const authorize = (email, password) => {
   return request({
-    url: 'sign-in',
+    url: 'signin',
     body: { email, password },
   }).then((res) => {
     if (res.token) {

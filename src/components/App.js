@@ -174,10 +174,10 @@ function App() {
 
   // === Функция регистрации === //
   function handleRegistration(email, password) {
-    console.log('Успешно!');
     ApiAuth.register(email, password)
       .then((res) => {
         if (res) {
+          console.log('Регистрация прошла успешно!');
           setLoggedIn(true);
           setIsRegistrationSuccess(true);
           setIsInfoTooltipOpen(true);
@@ -243,7 +243,7 @@ function App() {
         <Header userEmail={userEmail} onLogOut={handleLogOut}/>
           <Switch>
             <ProtectedRoute  /* Защищаем контент главной страницы от неавторизованных пользователей */
-              element={<Main/>}
+              component={Main}
               loggedIn={loggedIn} 
               exact path="/"
               onCardClick={handleImagePopupOpen}
